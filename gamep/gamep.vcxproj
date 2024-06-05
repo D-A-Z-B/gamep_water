@@ -127,11 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="console.cpp" />
+    <ClCompile Include="Core.cpp" />
     <ClCompile Include="mci.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Block.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="define.h" />
     <ClInclude Include="mci.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
