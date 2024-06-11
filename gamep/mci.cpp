@@ -2,6 +2,7 @@
 #include <mmsystem.h>
 #include <Digitalv.h>
 #include "mci.h"
+#pragma comment(lib, "winmm.lib")
 
 UINT BgmId;
 UINT Effectid;
