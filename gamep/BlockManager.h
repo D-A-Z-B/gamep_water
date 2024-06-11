@@ -10,11 +10,14 @@ private:
 public:
 	bool Init();
 	void Run();
-public:
-	std::vector<Block> blockVector;
 private:
 	void Update();
 	void Render();
+public:
+	std::vector<Block> blockVector;
+private:
+	int delayTime;
+	int randomIndex;
 public:
 	static BlockManager* GetInst()
 	{
