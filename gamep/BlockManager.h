@@ -6,11 +6,9 @@
 class BlockManager
 {
 private:
-	BlockManager();
+	BlockManager() = default;
 public:
 	bool Init();
-	void Run();
-private:
 	void Update();
 	void Render();
 public:
