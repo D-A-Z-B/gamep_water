@@ -1,12 +1,10 @@
 #pragma once
 #include <string>
-class Player
+#include "Object.h"
+class Player : public Object
 {
 public:
 	std::string PlayerAppear;
-public:
-	void Render();
-	void Update();
 private:
 	void Move();
 };

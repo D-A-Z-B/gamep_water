@@ -19,5 +19,9 @@ class Object
 public:
 	ObejctType type;
 	Pos pos;
+public:
+	virtual void Init() abstract;
+	virtual void Render() abstract;
+	virtual void Update() abstract;
 };
 
