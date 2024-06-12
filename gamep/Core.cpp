@@ -1,8 +1,10 @@
 #include "Core.h"
+#include "console.h"
 Core* Core::m_pInst = nullptr;
 
 bool Core::Init()
 {
+	system("cls");
 	//m_pPlayer->Init();
 	return false;
 }

@@ -1,14 +1,10 @@
 #pragma once
-// GameManager
-// 싱글톤 - 다이나믹
-// 늦은 초기화(lazy initialization): 객체 생성 시점으르 지연시켜서 
-// 내가 필요한 시점에 초기화할 수 있게 하는 것
 #include "define.h"
 
 class Core
 {
 private:
-	Core();
+	Core() = default;
 public:
 	bool Init();
 	void Run();
