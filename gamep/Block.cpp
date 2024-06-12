@@ -1,11 +1,14 @@
 #include "Block.h"
-Block::Block(int x)
+
+Block::Block(Pos pos, ObejctType objType)
 {
-	this->x = x;
+	this->pos = pos;
+	this->type = objType;
 }
 
 void Block::Update()
 {
+
 }
 
 void Block::Render()
