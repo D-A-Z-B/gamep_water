@@ -3,6 +3,8 @@
 #include "Core.h"
 
 int main() {
+	system("title SIBAL | mode con cols=55 lines=30");
+	LockResize();
 	SetCursorVis(false, 1);
 	if (!TitleScene()) {
 		return 0;

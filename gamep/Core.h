@@ -1,5 +1,6 @@
 #pragma once
 #include "define.h"
+#include "Player.h"
 
 class Core
 {
@@ -27,6 +28,8 @@ public:
 			m_pInst = nullptr;
 		}*/
 	}
+public:
+	Player *player;
 private:
 	static Core* m_pInst;
 };

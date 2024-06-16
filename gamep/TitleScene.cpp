@@ -49,7 +49,7 @@ void InfoRender()
 MENU MenuRender()
 {
 	COORD Resolution = GetConsoleResolution();
-	int x = Resolution.X / 10.5;
+	int x = Resolution.X / 5.5;
 	int y = Resolution.Y / 3;
 	int originy = y;
 	Gotoxy(x, y);

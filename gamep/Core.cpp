@@ -1,5 +1,6 @@
 #include "Core.h"
 #include "console.h"
+#include "Player.h"
 Core* Core::m_pInst = nullptr;
 
 bool Core::Init()
@@ -11,6 +12,10 @@ bool Core::Init()
 
 void Core::Run()
 {
+	COORD coord = GetConsoleResolution();
+	std::string playerAppear = "¡Ú";
+	Pos startPos = { coord.X / 2, coord.Y };
+	player = new Player(startPos, playerAppear);
 	while (true)
 	{
 		Update();
@@ -24,9 +29,11 @@ void Core::Run()
 void Core::Update()
 {
 	// Obejct;
+	player->Update();
 }
 
 void Core::Render()
 {
 	// Render();
+	player->Render();
 }
