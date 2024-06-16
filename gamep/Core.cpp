@@ -1,5 +1,6 @@
 #include "Core.h"
 #include "console.h"
+#include "BlockManager.h"
 #include "Player.h"
 Core* Core::m_pInst = nullptr;
 
@@ -7,13 +8,14 @@ bool Core::Init()
 {
 	system("cls");
 	//m_pPlayer->Init();
+	BlockManager::GetInst()->Init();
 	return false;
 }
 
 void Core::Run()
 {
 	COORD coord = GetConsoleResolution();
-	std::string playerAppear = "¡Ú";
+	std::string playerAppear = "ï¿½ï¿½";
 	Pos startPos = { coord.X / 2, coord.Y };
 	player = new Player(startPos, playerAppear);
 	while (true)
@@ -21,7 +23,7 @@ void Core::Run()
 		Update();
 		//Gotoxy(0, 0);
 		Render();
-		// ½Ã°£µ¿±âÈ­
+		// ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½È­
 		//FrameSync(60);
 	}
 }
@@ -29,11 +31,13 @@ void Core::Run()
 void Core::Update()
 {
 	// Obejct;
+	BlockManager::GetInst()->Update();
 	player->Update();
 }
 
 void Core::Render()
 {
 	// Render();
+	BlockManager::GetInst()->Render();
 	player->Render();
 }
