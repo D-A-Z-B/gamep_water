@@ -1,19 +1,29 @@
 #include "BlockManager.h"
+#include "MapManager.h"
 #include "Object.h"
 BlockManager* BlockManager::m_pInst = nullptr;
 
 bool BlockManager::Init()
 {
 	//m_pPlayer->Init();
-	Block block1{ {3,0}, ObejctType::Block };
-	Block block2{ {1,0}, ObejctType::Block };
-	blockVector.push_back(block1);
-	blockVector.push_back(block2);
+	intervalTime = 3;
+	oldTime = time(NULL);	
 	return false;
 }
 
 void BlockManager::Update()
 {
+	currentTime = time(NULL);
+	resultTime = currentTime - oldTime;
+	if (resultTime == intervalTime)
+	{
+		randomX = rand() % MAP_WIDTH - 1;
+		Block block = {{randomX,0}, ObejctType::Block};
+		blockVector.push_back(block);
+		oldTime = time(NULL);
+		resultTime = 0;
+	};
+
 	for (auto &block : blockVector)
 	{
 		block.Update();

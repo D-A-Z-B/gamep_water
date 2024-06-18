@@ -11,10 +11,10 @@ public:
 	bool Init();
 	void Update();
 	void Render();
-public:
-	std::vector<Block> blockVector;
 private:
-	int randomTime;
+	int intervalTime;
+	int currentY;
+	time_t oldTime, currentTime, resultTime;
 public:
 	static WaterManager* GetInst()
 	{

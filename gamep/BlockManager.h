@@ -14,8 +14,10 @@ public:
 public:
 	std::vector<Block> blockVector;
 private:
-	int delayTime;
+	int intervalTime;
+	time_t oldTime, currentTime, resultTime;
 	int randomIndex;
+	int randomX;
 public:
 	static BlockManager* GetInst()
 	{

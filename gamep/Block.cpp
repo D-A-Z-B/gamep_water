@@ -11,7 +11,8 @@ Block::Block(Pos pos, ObejctType objType)
 
 void Block::Update()
 {
-	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] == (char)ObejctType::Block)
+	srand((unsigned int)time(NULL));
+	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] != (char)ObejctType::None)
 		return;
 
 	currentTime = time(NULL);
@@ -32,7 +33,6 @@ void Block::Render()
 
 void Block::Init()
 {
-	srand((unsigned int)time(NULL));
 	intervalTime = rand() % 5 + 1;
 	oldTime = time(NULL);
 	newPos = pos;
