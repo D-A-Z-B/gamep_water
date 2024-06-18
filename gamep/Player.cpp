@@ -39,8 +39,8 @@ void Player::Move()
     case KEY_INPUT::NONE:
         break;
     }
-    newPos.x = std::clamp(newPos.x, 0, 10);
-    newPos.y = std::clamp(newPos.y, 0, 10);
+    newPos.x = std::clamp(newPos.x, 0, MAP_WIDTH-1);
+    newPos.y = std::clamp(newPos.y, 0, MAP_HEIGHT);
     
     if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None)) {
         if (MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)) {

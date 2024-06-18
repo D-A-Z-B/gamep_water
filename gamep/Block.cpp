@@ -19,7 +19,7 @@ void Block::Update()
    	resultTime = currentTime - oldTime;
 	if (resultTime == intervalTime)
 	{
-		MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::None);
+		MapManager::GetInst()->SetMap(pos, ObjectType::None);
 		pos.y++;
 		oldTime = time(NULL);
 		resultTime = 0;
@@ -28,12 +28,14 @@ void Block::Update()
 
 void Block::Render()
 {
-	MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::Block);
+	if(MapManager::GetInst()->CheckObjectType(pos, ObjectType::Water))
+		return;
+	MapManager::GetInst()->SetMap(pos, ObjectType::Block);
 }
 
 void Block::Init()
 {
-	intervalTime = rand() % 5 + 1;
+	intervalTime = rand() % 1 + 1;
 	oldTime = time(NULL);
 	newPos = pos;
 }

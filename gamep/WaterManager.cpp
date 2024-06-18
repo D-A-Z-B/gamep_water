@@ -5,7 +5,7 @@ WaterManager* WaterManager::m_pInst = nullptr;
 bool WaterManager::Init()
 {
 	oldTime = time(NULL);
-	intervalTime = 12;
+	intervalTime = 15;
 	currentY = MAP_HEIGHT - 1;
 	return false;
 }
@@ -26,6 +26,6 @@ void WaterManager::Render()
 {
 	for (int i = 0; i < MAP_WIDTH-1; i++)
 	{
-		MapManager::GetInst()->SetMap(i, currentY, ObjectType::Water);
+		MapManager::GetInst()->SetMap({ i, currentY }, ObjectType::Water);
 	}
 }

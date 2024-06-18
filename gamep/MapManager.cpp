@@ -17,16 +17,21 @@ bool MapManager::Init()
 	//}
 	//readMap.close();
 
-	strcpy_s(arrMap[0], "000000000");
-	strcpy_s(arrMap[1], "000000000");
-	strcpy_s(arrMap[2], "000000000");
-	strcpy_s(arrMap[3], "000000000");
-	strcpy_s(arrMap[4], "000000000");
-	strcpy_s(arrMap[5], "000000000");
-	strcpy_s(arrMap[6], "000021000");
-	strcpy_s(arrMap[7], "222222222");
-	strcpy_s(arrMap[8], "222222222");
-	strcpy_s(arrMap[9], "333333333");
+	strcpy_s(arrMap[0], "00000000000000");
+	strcpy_s(arrMap[1], "00000000000000");
+	strcpy_s(arrMap[2], "00000000000000");
+	strcpy_s(arrMap[3], "00000000000000");
+	strcpy_s(arrMap[4], "00000000000000");
+	strcpy_s(arrMap[5], "00000000000000");
+	strcpy_s(arrMap[6], "00000000000000");
+	strcpy_s(arrMap[7], "00000000000000");
+	strcpy_s(arrMap[8], "00000000000000");
+	strcpy_s(arrMap[9], "00000000000000");
+	strcpy_s(arrMap[10],"00000000000000");
+	strcpy_s(arrMap[11],"00002100000000");
+	strcpy_s(arrMap[12],"22222222222222");
+	strcpy_s(arrMap[13],"22222222222222");
+	strcpy_s(arrMap[14],"33333333333333");
 
 	return false;
 }

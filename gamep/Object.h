@@ -6,6 +6,7 @@ enum class ObjectType
 	Player,
 	Block,
 	Water,
+	Goal,
 	Item
 };
 
