@@ -42,19 +42,19 @@ void MapManager::Render()
 	{
 		for (int j = 0; j < MAP_WIDTH; ++j)
 		{
-			if (arrMap[i][j] == (char)ObejctType::None)
+			if (arrMap[i][j] == (char)ObjectType::None)
 			{
 				cout << "  ";
 			}
-			else if (arrMap[i][j] == (char)ObejctType::Player)
+			else if (arrMap[i][j] == (char)ObjectType::Player)
 			{
 				cout << "в┬";
 			}
-			else if (arrMap[i][j] == (char)ObejctType::Block)
+			else if (arrMap[i][j] == (char)ObjectType::Block)
 			{
 				cout << "бс";
 			}
-			else if (arrMap[i][j] == (char)ObejctType::Water)
+			else if (arrMap[i][j] == (char)ObjectType::Water)
 			{
 				SetColor((int)COLOR::LIGHT_BLUE);
 				cout << "~~";
@@ -62,5 +62,28 @@ void MapManager::Render()
 			SetColor((int)COLOR::WHITE);
 		}
 		cout << endl;
+	}
+}
+
+void MapManager::SetMap(int x, int y, ObjectType type)
+{
+	arrMap[y][x] = (char)type;
+}
+
+bool MapManager::CheckObjectType(int x, int y)
+{
+	return false;
+}
+
+Pos MapManager::GetPos(ObjectType type)
+{
+	for (int i = 0; i < MAP_HEIGHT; ++i)
+	{
+		for (int j = 0; j < MAP_WIDTH; ++j)
+		{
+			if (arrMap[i][j] == (char)type) {
+				return {j, i};
+			}
+		}
 	}
 }

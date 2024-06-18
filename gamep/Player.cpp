@@ -2,11 +2,11 @@
 #include <Windows.h>
 #include "Player.h"
 #include "console.h"
+#include "MapManager.h"
 
 void Player::Init()
 {
-    pos = { GetConsoleResolution().X / 2, GetConsoleResolution().Y };
-    Gotoxy(pos.x, pos.y);
+    pos = MapManager::GetInst()->GetPos(ObjectType::Player);
     PlayerAppear = "¡Ú";
 }
 
@@ -17,14 +17,7 @@ void Player::Update()
 
 void Player::Render()
 {
-    Gotoxy(0, 0);
-    MoveRender();
-}
 
-void Player::MoveRender()
-{
-    Gotoxy(pos.x, pos.y);
-    std::cout << PlayerAppear;
 }
 
 void Player::Move()
@@ -33,9 +26,11 @@ void Player::Move()
     switch (inputKey)
     {
     case KEY_INPUT::LEFT:
+        MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::None);
         pos.x--;
         break;
     case KEY_INPUT::RIGHT:
+        MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::None);
         pos.x++;
         break;
     case KEY_INPUT::JUMP:
@@ -43,6 +38,8 @@ void Player::Move()
     case KEY_INPUT::NONE:
         break;
     }
+    MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::Player);
+    Sleep(100);
 }
 
 KEY_INPUT Player::KeyInput()

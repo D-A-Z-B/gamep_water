@@ -2,7 +2,7 @@
 #include "console.h"
 #include "MapManager.h"
 
-Block::Block(Pos pos, ObejctType objType)
+Block::Block(Pos pos, ObjectType objType)
 {
 	this->pos = pos;
 	this->type = objType;
@@ -11,7 +11,7 @@ Block::Block(Pos pos, ObejctType objType)
 
 void Block::Update()
 {
-	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] == (char)ObejctType::Block)
+	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] == (char)ObjectType::Block)
 		return;
 
 	currentTime = time(NULL);
@@ -26,8 +26,8 @@ void Block::Update()
 
 void Block::Render()
 {
-	MapManager::GetInst()->arrMap[pos.y - 1][pos.x] = (char)ObejctType::None;
-	MapManager::GetInst()->arrMap[pos.y][pos.x] = (char)ObejctType::Block;
+	MapManager::GetInst()->arrMap[pos.y - 1][pos.x] = (char)ObjectType::None;
+	MapManager::GetInst()->arrMap[pos.y][pos.x] = (char)ObjectType::Block;
 }
 
 void Block::Init()

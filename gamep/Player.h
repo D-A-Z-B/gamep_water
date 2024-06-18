@@ -19,8 +19,6 @@ public:
 	void Init() override;
 	void Update() override;
 	void Render() override;
-public:
-	void MoveRender();
 private:
 	void Move();
 	KEY_INPUT KeyInput();

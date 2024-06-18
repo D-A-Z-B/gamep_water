@@ -5,7 +5,7 @@
 class Block : public Object
 {
 public:
-	Block(Pos pos, ObejctType objType);
+	Block(Pos pos, ObjectType objType);
 public:
 	void Update() override;
 	void Render() override;
