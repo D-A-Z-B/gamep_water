@@ -12,13 +12,14 @@ Block::Block(Pos pos, ObjectType objType)
 void Block::Update()
 {
 	srand((unsigned int)time(NULL));
-	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] != (char)ObejctType::None)
+	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] != (char)ObjectType::None)
 		return;
 
 	currentTime = time(NULL);
    	resultTime = currentTime - oldTime;
 	if (resultTime == intervalTime)
 	{
+		MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::None);
 		pos.y++;
 		oldTime = time(NULL);
 		resultTime = 0;
@@ -27,8 +28,7 @@ void Block::Update()
 
 void Block::Render()
 {
-	MapManager::GetInst()->arrMap[pos.y - 1][pos.x] = (char)ObjectType::None;
-	MapManager::GetInst()->arrMap[pos.y][pos.x] = (char)ObjectType::Block;
+	MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::Block);
 }
 
 void Block::Init()
