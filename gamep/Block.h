@@ -1,6 +1,6 @@
 #pragma once
-#include "console.h"
 #include "Object.h"
+#include "console.h"
 
 class Block : public Object
 {

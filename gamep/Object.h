@@ -2,7 +2,8 @@
 
 enum class ObejctType
 {
-	Player = '0',
+	None = '0',
+	Player,
 	Block,
 	Water,
 	Item

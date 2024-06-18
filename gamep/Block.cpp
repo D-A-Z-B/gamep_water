@@ -1,5 +1,6 @@
 #include "Block.h"
 #include "console.h"
+#include "MapManager.h"
 
 Block::Block(Pos pos, ObejctType objType)
 {
@@ -10,11 +11,14 @@ Block::Block(Pos pos, ObejctType objType)
 
 void Block::Update()
 {
+	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] == (char)ObejctType::Block)
+		return;
+
 	currentTime = time(NULL);
    	resultTime = currentTime - oldTime;
 	if (resultTime == intervalTime)
 	{
-		newPos.y--;
+		pos.y++;
 		oldTime = time(NULL);
 		resultTime = 0;
 	}
@@ -22,10 +26,8 @@ void Block::Update()
 
 void Block::Render()
 {
-	GotoPos(pos.x, pos.y);
-	cout << "";
-	GotoPos(newPos.x, newPos.y);
-	cout << "¤±";
+	MapManager::GetInst()->arrMap[pos.y - 1][pos.x] = (char)ObejctType::None;
+	MapManager::GetInst()->arrMap[pos.y][pos.x] = (char)ObejctType::Block;
 }
 
 void Block::Init()
