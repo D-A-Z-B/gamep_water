@@ -12,7 +12,7 @@ Block::Block(Pos pos, ObjectType objType)
 void Block::Update()
 {
 	srand((unsigned int)time(NULL));
-	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] != (char)ObejctType::None)
+	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] != (char)ObjectType::None)
 		return;
 
 	currentTime = time(NULL);

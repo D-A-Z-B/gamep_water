@@ -26,6 +26,6 @@ void WaterManager::Render()
 {
 	for (int i = 0; i < MAP_WIDTH-1; i++)
 	{
-		MapManager::GetInst()->arrMap[currentY][i] = (char)ObejctType::Water;
+		MapManager::GetInst()->arrMap[currentY][i] = (char)ObjectType::Water;
 	}
 }

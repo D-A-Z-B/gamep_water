@@ -1,12 +1,15 @@
 #include <iostream>
 #include <Windows.h>
+#include <algorithm>
 #include "Player.h"
 #include "console.h"
 #include "MapManager.h"
 
+
 void Player::Init()
 {
     pos = MapManager::GetInst()->GetPos(ObjectType::Player);
+    newPos = pos;
     PlayerAppear = "¡Ú";
 }
 
@@ -26,19 +29,40 @@ void Player::Move()
     switch (inputKey)
     {
     case KEY_INPUT::LEFT:
-        MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::None);
-        pos.x--;
+        newPos.x--;
         break;
     case KEY_INPUT::RIGHT:
-        MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::None);
-        pos.x++;
+        newPos.x++;
         break;
     case KEY_INPUT::JUMP:
         break;
     case KEY_INPUT::NONE:
         break;
     }
-    MapManager::GetInst()->SetMap(pos.x, pos.y, ObjectType::Player);
+    newPos.x = std::clamp(newPos.x, 0, 10);
+    newPos.y = std::clamp(newPos.y, 0, 10);
+    
+    if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None)) {
+        if (MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)) {
+            MapManager::GetInst()->SetMap(pos, ObjectType::None);
+            newPos = { newPos.x, newPos.y + 1 };
+            pos = newPos;
+            MapManager::GetInst()->SetMap(pos, ObjectType::Player);
+        }
+        else {
+            MapManager::GetInst()->SetMap(pos, ObjectType::None);
+            pos = newPos;
+            MapManager::GetInst()->SetMap(pos, ObjectType::Player);
+        }
+    }
+    else if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Block)) {
+        if (!MapManager::GetInst()->CheckObjectType({newPos.x, newPos.y - 1}, ObjectType::Block)) {
+            MapManager::GetInst()->SetMap(pos, ObjectType::None);
+            newPos = { newPos.x, newPos.y - 1 };
+            pos = newPos;
+            MapManager::GetInst()->SetMap(pos, ObjectType::Player);
+        }
+    }
     Sleep(100);
 }
 

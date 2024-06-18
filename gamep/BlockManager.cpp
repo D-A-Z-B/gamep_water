@@ -18,7 +18,7 @@ void BlockManager::Update()
 	if (resultTime == intervalTime)
 	{
 		randomX = rand() % MAP_WIDTH - 1;
-		Block block = {{randomX,0}, ObejctType::Block};
+		Block block = {{randomX,0}, ObjectType::Block};
 		blockVector.push_back(block);
 		oldTime = time(NULL);
 		resultTime = 0;

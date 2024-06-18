@@ -23,7 +23,7 @@ bool MapManager::Init()
 	strcpy_s(arrMap[3], "000000000");
 	strcpy_s(arrMap[4], "000000000");
 	strcpy_s(arrMap[5], "000000000");
-	strcpy_s(arrMap[6], "000001000");
+	strcpy_s(arrMap[6], "000021000");
 	strcpy_s(arrMap[7], "222222222");
 	strcpy_s(arrMap[8], "222222222");
 	strcpy_s(arrMap[9], "333333333");
@@ -65,13 +65,16 @@ void MapManager::Render()
 	}
 }
 
-void MapManager::SetMap(int x, int y, ObjectType type)
+void MapManager::SetMap(Pos pos, ObjectType type)
 {
-	arrMap[y][x] = (char)type;
+	arrMap[pos.y][pos.x] = (char)type;
 }
 
-bool MapManager::CheckObjectType(int x, int y)
+bool MapManager::CheckObjectType(Pos pos, ObjectType type)
 {
+	if (arrMap[pos.y][pos.x] == (char)type) {
+		return true;
+	}
 	return false;
 }
 
