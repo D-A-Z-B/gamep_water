@@ -1,6 +1,6 @@
 #pragma once
 
-enum class ObejctType
+enum class ObjectType
 {
 	None = '0',
 	Player,
@@ -18,7 +18,7 @@ struct Pos
 class Object
 {
 public:
-	ObejctType type;
+	ObjectType type;
 	Pos pos;
 public:
 	virtual void Init() abstract;

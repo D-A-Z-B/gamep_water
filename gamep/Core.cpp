@@ -35,8 +35,7 @@ void Core::Update()
 {
 	// Obejct;
 	BlockManager::GetInst()->Update();
-	WaterManager::GetInst()->Update();
-	//player->Update();
+	player->Update();
 }
 
 void Core::Render()
