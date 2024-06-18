@@ -17,8 +17,8 @@ public:
 	void Update();
 	void Render();
 public:
-	void SetMap(int x, int y, ObjectType type);
-	bool CheckObjectType(int x, int y);
+	void SetMap(Pos pos, ObjectType type);
+	bool CheckObjectType(Pos pos, ObjectType type);
 	Pos GetPos(ObjectType type);
 public:
 	static MapManager* GetInst()
