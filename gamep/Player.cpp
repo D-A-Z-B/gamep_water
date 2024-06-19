@@ -10,7 +10,6 @@ void Player::Init()
 {
     pos = MapManager::GetInst()->GetPos(ObjectType::Player);
     newPos = pos;
-    PlayerAppear = "¡Ú";
 }
 
 void Player::Update()
@@ -56,14 +55,15 @@ void Player::Move()
         }
     }
     else if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Block)) {
-        if (!MapManager::GetInst()->CheckObjectType({newPos.x, newPos.y - 1}, ObjectType::Block)) {
+        if (!MapManager::GetInst()->CheckObjectType({newPos.x, newPos.y - 1}, ObjectType::Block)
+            && !MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)) {
             MapManager::GetInst()->SetMap(pos, ObjectType::None);
             newPos = { newPos.x, newPos.y - 1 };
             pos = newPos;
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
         }
     }
-    Sleep(100);
+    Sleep(75);
 }
 
 KEY_INPUT Player::KeyInput()
