@@ -7,6 +7,7 @@
 
 void TitleRender()
 {
+	SetColor((char)COLOR::BLUE);
 	int prevmode = _setmode(_fileno(stdout), _O_U16TEXT);
 	wcout << L"		 ▄█     █▄     ▄████████     ███        ▄████████    ▄████████ "  << endl;
 	wcout << L"		███     ███   ███    ███ ▀█████████▄   ███    ███   ███    ███ "  << endl;
@@ -18,6 +19,7 @@ void TitleRender()
 	wcout << L"		 ▀███▀███▀    ███    █▀     ▄████▀     ██████████   ███    ███ " << endl;
 	wcout << L"		                                                    ███    ███ "  << endl;
 	int curmode = _setmode(_fileno(stdout), prevmode);
+	SetColor();
 }
 
 bool TitleScene()
@@ -32,6 +34,7 @@ bool TitleScene()
 			return true;
 		case MENU::INFO:
 			InfoRender();
+			Sleep(100);
 			break;
 		case MENU::QUIT:
 			return false;
@@ -43,13 +46,21 @@ bool TitleScene()
 
 void InfoRender()
 {
-
+	system("cls");
+	Sleep(100);
+	cout << "[ 조작법 ]" << endl << endl;
+	cout << "이동: <-, ->" << endl;
+	while (true) {
+		if (KeyController() == KEY::SPACE) {
+			break;
+		}
+	}
 }
 
 MENU MenuRender()
 {
 	COORD Resolution = GetConsoleResolution();
-	int x = Resolution.X / 5.5;
+	int x = Resolution.X / 5;
 	int y = Resolution.Y / 3;
 	int originy = y;
 	Gotoxy(x, y);
@@ -89,7 +100,7 @@ MENU MenuRender()
 				return MENU::START;
 			else if (y == originy + 1)
 				return MENU::INFO;
-			else if (y == originy + 1)
+			else if (y == originy + 2)
 				return MENU::QUIT;
 		}
 		break;

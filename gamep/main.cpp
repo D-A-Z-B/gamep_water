@@ -3,7 +3,7 @@
 #include "Core.h"
 
 int main() {
-	system("title SIBAL | mode con cols=100 lines=30");
+	system("title WATER | mode con cols=100 lines=30");
 	LockResize();
 	SetCursorVis(false, 1);
 	if (!TitleScene()) {

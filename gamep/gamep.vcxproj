@@ -128,23 +128,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Block.cpp" />
-    <ClCompile Include="BlockManager.cpp" />
-    <ClCompile Include="console.cpp" />
-    <ClCompile Include="Core.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MapManager.cpp" />
-    <ClCompile Include="mci.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="TitleScene.cpp" />
-    <ClCompile Include="WaterManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockManager.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="DeadScene.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="mci.h" />
@@ -152,6 +140,21 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="WaterManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="BlockManager.cpp" />
+    <ClCompile Include="BlockManagerCore.cpp" />
+    <ClCompile Include="console.cpp" />
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="DeadScene.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="mci.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="WaterManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
