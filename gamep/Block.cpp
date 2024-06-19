@@ -11,16 +11,20 @@ Block::Block(Pos pos, ObjectType objType)
 
 void Block::Update()
 {
-	srand((unsigned int)time(NULL));
-	if (MapManager::GetInst()->arrMap[pos.y + 1][pos.x] != (char)ObjectType::None)
-		return;
-
 	currentTime = time(NULL);
    	resultTime = currentTime - oldTime;
 	if (resultTime == intervalTime)
 	{
 		MapManager::GetInst()->SetMap(pos, ObjectType::None);
-		pos.y++;
+		++newPos.y;
+		if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Player))
+		{
+			system("cls");
+			return;
+		}
+		if (!MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None))
+			return;
+		pos = newPos;
 		oldTime = time(NULL);
 		resultTime = 0;
 	}
@@ -35,6 +39,7 @@ void Block::Render()
 
 void Block::Init()
 {
+	srand((unsigned int)time(NULL));
 	intervalTime = rand() % 1 + 1;
 	oldTime = time(NULL);
 	newPos = pos;

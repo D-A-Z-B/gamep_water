@@ -17,6 +17,14 @@ void WaterManager::Update()
 	if (resultTime == intervalTime)
 	{
 		currentY--;
+		for (int i = 0; i < MAP_WIDTH - 1; i++)
+		{
+			if (MapManager::GetInst()->CheckObjectType({ i, currentY }, ObjectType::Player))
+			{
+				system("cls");
+				return;
+			}
+		}
 		oldTime = time(NULL);
 		resultTime = 0;
 	};

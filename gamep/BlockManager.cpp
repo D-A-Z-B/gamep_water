@@ -17,9 +17,17 @@ void BlockManager::Update()
 	resultTime = currentTime - oldTime;
 	if (resultTime == intervalTime)
 	{
-		randomX = rand() % MAP_WIDTH;
-		Block block = {{randomX , 0}, ObjectType::Block};
-		blockVector.push_back(block);
+		randomX = rand() % (MAP_WIDTH - 1);
+		randomIndex = rand() % 3 + 1;
+		for (int i = 0; i < randomIndex; i++)
+		{
+			bool over = randomX + i > MAP_WIDTH - 2;
+			if (!over)
+			{
+				Block block = {{randomX + i , 0}, ObjectType::Block};
+				blockVector.push_back(block);
+			}
+		}
 		oldTime = time(NULL);
 		resultTime = 0;
 	};

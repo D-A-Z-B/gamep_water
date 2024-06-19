@@ -1,5 +1,4 @@
 ﻿#include <iostream>
-#include <iostream>
 #include <io.h>
 #include <fcntl.h>
 #include "console.h"
@@ -30,6 +29,7 @@ bool TitleScene()
 		{
 		case MENU::START:
 			return true;
+			break;
 		case MENU::INFO:
 			InfoRender();
 			break;
@@ -43,7 +43,7 @@ bool TitleScene()
 
 void InfoRender()
 {
-
+	cout << " afafafaf";
 }
 
 MENU MenuRender()
@@ -89,7 +89,7 @@ MENU MenuRender()
 				return MENU::START;
 			else if (y == originy + 1)
 				return MENU::INFO;
-			else if (y == originy + 1)
+			else if (y == originy + 2)
 				return MENU::QUIT;
 		}
 		break;
