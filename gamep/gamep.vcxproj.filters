@@ -9,6 +9,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="리소스 파일\Skill">
+      <UniqueIdentifier>{b7efc460-a892-4c12-a3d8-502e8fa9ded9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스 파일\Scene">
+      <UniqueIdentifier>{ce436db8-1028-41f6-ac8d-57ed2e64e6ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console.h">
@@ -47,6 +53,12 @@
     <ClInclude Include="DeadScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp">
@@ -64,9 +76,6 @@
     <ClCompile Include="Core.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DeadScene.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
@@ -82,11 +91,20 @@
     <ClCompile Include="Player.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TitleScene.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="WaterManager.cpp">
       <Filter>리소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>리소스 파일\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>리소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="DeadScene.cpp">
+      <Filter>리소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillManager.cpp">
+      <Filter>리소스 파일\Skill</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
