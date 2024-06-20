@@ -26,9 +26,9 @@ bool MapManager::Init()
 	strcpy_s(arrMap[6], "00000000000000");
 	strcpy_s(arrMap[7], "00000000000000");
 	strcpy_s(arrMap[8], "00000000000000");
-	strcpy_s(arrMap[9], "00000000000000");
-	strcpy_s(arrMap[10],"00000000000000");
-	strcpy_s(arrMap[11],"00000100000000");
+	strcpy_s(arrMap[9], "00000020000000");
+	strcpy_s(arrMap[10],"00000020000000");
+	strcpy_s(arrMap[11],"00000120000000");
 	strcpy_s(arrMap[12],"22222222222222");
 	strcpy_s(arrMap[13],"22222222222222");
 	strcpy_s(arrMap[14],"33333333333333");
@@ -61,7 +61,6 @@ void MapManager::Render()
 			}
 			else if (arrMap[i][j] == (char)ObjectType::Water)
 			{
-				SetColor((int)COLOR::LIGHT_BLUE);
 				cout << "~~";
 			}
 			SetColor((int)COLOR::WHITE);
