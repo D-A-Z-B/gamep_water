@@ -1,5 +1,7 @@
 #include "WaterManager.h"
 #include "MapManager.h"
+#include "console.h"
+
 WaterManager* WaterManager::m_pInst = nullptr;
 
 bool WaterManager::Init()

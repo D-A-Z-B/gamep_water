@@ -11,11 +11,9 @@ Block::Block(Pos pos, ObjectType objType)
 
 void Block::Update()
 {
-	currentTime = time(NULL);
-   	resultTime = currentTime - oldTime;
-	if (resultTime == intervalTime)
+	currentTime = clock();
+	if (double(currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
-		MapManager::GetInst()->SetMap(pos, ObjectType::None);
 		++newPos.y;
 		if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Player))
 		{
@@ -24,9 +22,10 @@ void Block::Update()
 		}
 		if (!MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None))
 			return;
+		MapManager::GetInst()->SetMap(pos, ObjectType::None);
 		pos = newPos;
-		oldTime = time(NULL);
-		resultTime = 0;
+		currentTime = 0;
+		oldTime = clock();
 	}
 }
 
@@ -40,7 +39,7 @@ void Block::Render()
 void Block::Init()
 {
 	srand((unsigned int)time(NULL));
-	intervalTime = rand() % 1 + 1;
-	oldTime = time(NULL);
+	intervalTime = 0.1;
+	oldTime = clock();
 	newPos = pos;
 }

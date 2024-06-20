@@ -12,6 +12,6 @@ public:
 	void Init() override;
 private:
 	Pos newPos;
-	int intervalTime;
-	time_t oldTime, currentTime, resultTime;
+	double intervalTime;
+	clock_t currentTime, oldTime;
 };

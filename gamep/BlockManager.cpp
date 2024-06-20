@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "BlockManager.h"
 #include "MapManager.h"
 #include "Object.h"
@@ -21,12 +22,8 @@ void BlockManager::Update()
 		randomIndex = rand() % 3 + 1;
 		for (int i = 0; i < randomIndex; i++)
 		{
-			bool over = randomX + i > MAP_WIDTH - 2;
-			if (!over)
-			{
-				Block block = {{randomX + i , 0}, ObjectType::Block};
-				blockVector.push_back(block);
-			}
+			Block block = {{std::clamp(randomX + i, 0 , MAP_WIDTH-2) , 0}, ObjectType::Block};
+			blockVector.push_back(block);
 		}
 		oldTime = time(NULL);
 		resultTime = 0;
