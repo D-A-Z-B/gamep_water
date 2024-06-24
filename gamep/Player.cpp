@@ -35,8 +35,8 @@ void Player::Move()
         newPos.x++;
         break;
     case KEY_INPUT::BLOCKGEN: {
-        if (SkillManager::GetInst()->blockGen.CanUseSkill()) {
-            SkillManager::GetInst()->blockGen.UseSkill();
+        if (SkillManager::GetInst()->blockGen->CanUseSkill()) {
+            SkillManager::GetInst()->blockGen->UseSkill(pos);
         }
         return;
     }

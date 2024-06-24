@@ -4,7 +4,7 @@ SkillManager* SkillManager::m_pInst = nullptr;
 
 void SkillManager::Init()
 {
-    blockGen.Init(10);
+    //blockGen->Init(10);
 }
 
 void SkillManager::Render()

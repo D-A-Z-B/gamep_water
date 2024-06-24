@@ -27,7 +27,7 @@ public:
 		}*/
 	}
 public:
-	BlockGenSkill blockGen;
+	BlockGenSkill *blockGen;
 private:
 	static SkillManager* m_pInst;
 };
