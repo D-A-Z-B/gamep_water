@@ -5,12 +5,13 @@
 #include "MapManager.h"
 #include "SkillManager.h"
 #include "Player.h"
+#include "DeadScene.h"
 Core* Core::m_pInst = nullptr;
 
 bool Core::Init()
 {
 	system("cls");
-	//m_pPlayer->Init();
+	isDead = false;
 	BlockManager::GetInst()->Init();
 	MapManager::GetInst()->Init();
 	WaterManager::GetInst()->Init();
@@ -28,9 +29,17 @@ void Core::Run()
 	{
 		Update();
 		Gotoxy(0, 0);
+		if (isDead)
+			break;
 		Render();
-		// �ð�����ȭ
 	}
+}
+
+void Core::Dead()
+{
+	system("cls");
+	Sleep(1000);
+	isDead = true;
 }
 
 void Core::Update()

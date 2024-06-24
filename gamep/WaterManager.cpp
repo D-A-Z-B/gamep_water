@@ -1,6 +1,7 @@
 #include "WaterManager.h"
 #include "MapManager.h"
 #include "console.h"
+#include "Core.h"
 
 WaterManager* WaterManager::m_pInst = nullptr;
 
@@ -23,7 +24,7 @@ void WaterManager::Update()
 		{
 			if (MapManager::GetInst()->CheckObjectType({ i, currentY }, ObjectType::Player))
 			{
-				system("cls");
+				Core::GetInst()->Dead();
 				return;
 			}
 		}

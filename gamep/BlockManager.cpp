@@ -6,7 +6,7 @@ BlockManager* BlockManager::m_pInst = nullptr;
 
 bool BlockManager::Init()
 {
-	//m_pPlayer->Init();
+	blockVector.clear();
 	intervalTime = 3;
 	oldTime = time(NULL);	
 	return false;
@@ -18,6 +18,7 @@ void BlockManager::Update()
 	resultTime = currentTime - oldTime;
 	if (resultTime == intervalTime)
 	{
+		srand((unsigned int)time(NULL));
 		randomX = rand() % (MAP_WIDTH - 1);
 		randomIndex = rand() % 3 + 1;
 		for (int i = 0; i < randomIndex; i++)

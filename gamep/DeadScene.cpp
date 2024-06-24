@@ -1,8 +1,8 @@
 ﻿#include <iostream>
-#include <iostream>
 #include <io.h>
 #include <fcntl.h>
 #include "console.h" 
+#include "Core.h"
 #include "DeadScene.h"
 
 void DeadTextRender()
@@ -22,22 +22,13 @@ void DeadTextRender()
 	SetColor();
 }
 
-bool DeadScene()
+DeadMENU DeadScene()
 {
 	while (true) {
 		system("cls");
 		DeadTextRender();
 		DeadMENU eMenu = DeadSceneMenuRender();
-		switch (eMenu)
-		{
-		case DeadMENU::RETRY:
-			return true;
-		case DeadMENU::GOTITLE:
-			Sleep(100);
-			break;
-		case DeadMENU::QUIT:
-			return false;
-		}
+		return eMenu;
 	}
 }
 
@@ -47,6 +38,8 @@ DeadMENU DeadSceneMenuRender()
 	int x = Resolution.X / 4.7;
 	int y = Resolution.Y / 2.5;
 	int originy = y;
+	Gotoxy(x - 1, y);
+	cout << ">";
 	Gotoxy(x, y);
 	cout << "다시 시작";
 	Gotoxy(x, y + 1);
@@ -94,13 +87,13 @@ DeadMENU DeadSceneMenuRender()
 
 DEADKEY DeadKeyController()
 {
-	if (GetAsyncKeyState(VK_UP) * 0x8000) {
+	if (GetAsyncKeyState(VK_UP) & 0x8000) {
 		return DEADKEY::UP;
 	}
-	if (GetAsyncKeyState(VK_DOWN) * 0x8000) {
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
 		return DEADKEY::DOWN;
 	}
-	if (GetAsyncKeyState(VK_SPACE) * 0x8000) {
+	if (GetAsyncKeyState(VK_SPACE) & 0x0001) {
 		return DEADKEY::SPACE;
 	}
 	return DEADKEY::NONE;
