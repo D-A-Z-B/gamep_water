@@ -9,6 +9,7 @@ private:
 public:
 	bool Init();
 	void Run();
+	void Dead();
 private:
 	void Update();
 	void Render();
@@ -30,6 +31,7 @@ public:
 	}
 public:
 	Player *player;
+	bool isDead;
 private:
 	static Core* m_pInst;
 };

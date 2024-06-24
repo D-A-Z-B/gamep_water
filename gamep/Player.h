@@ -12,7 +12,6 @@ class Player : public Object
 public:
 	std::string PlayerAppear;
 	Pos newPos;
-	Skill skill;
 public:
 	Player(Pos playrPosition, std::string playerAppear) {
 		Init();

@@ -11,7 +11,6 @@ public:
 	void Render() override;
 	void Init() override;
 private:
-	Pos newPos;
 	double intervalTime;
 	clock_t currentTime, oldTime;
 };

@@ -1,5 +1,6 @@
 #include "Block.h"
 #include "console.h"
+#include "Core.h"
 #include "MapManager.h"
 
 Block::Block(Pos pos, ObjectType objType)
@@ -14,18 +15,18 @@ void Block::Update()
 	currentTime = clock();
 	if (double(currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
-		++newPos.y;
-		if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Player))
+		if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Player))
 		{
-			system("cls");
+			Core::GetInst()->Dead();
 			return;
 		}
-		if (!MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None))
-			return;
-		MapManager::GetInst()->SetMap(pos, ObjectType::None);
-		pos = newPos;
-		currentTime = 0;
-		oldTime = clock();
+		if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::None))
+		{
+			MapManager::GetInst()->SetMap(pos, ObjectType::None);
+			++pos.y;
+			oldTime = clock();
+			currentTime = 0;
+		}
 	}
 }
 
@@ -39,7 +40,6 @@ void Block::Render()
 void Block::Init()
 {
 	srand((unsigned int)time(NULL));
-	intervalTime = 0.1;
+	intervalTime = 0.6;
 	oldTime = clock();
-	newPos = pos;
 }

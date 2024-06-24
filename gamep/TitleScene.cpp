@@ -63,6 +63,8 @@ MENU MenuRender()
 	int x = Resolution.X / 5;
 	int y = Resolution.Y / 3;
 	int originy = y;
+	Gotoxy(x - 1, y);
+	cout << ">";
 	Gotoxy(x, y);
 	cout << "게임 시작";
 	Gotoxy(x, y + 1);
@@ -110,13 +112,13 @@ MENU MenuRender()
 
 KEY KeyController()
 {
-	if (GetAsyncKeyState(VK_UP) * 0x8000) {
+	if (GetAsyncKeyState(VK_UP) & 0x8000) {
 		return KEY::UP;
 	}
-	if (GetAsyncKeyState(VK_DOWN) * 0x8000) {
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
 		return KEY::DOWN;
 	}
-	if (GetAsyncKeyState(VK_SPACE) * 0x8000) {
+	if (GetAsyncKeyState(VK_SPACE) & 0x0001) {
 		return KEY::SPACE;
 	}
 	return KEY::NONE;
