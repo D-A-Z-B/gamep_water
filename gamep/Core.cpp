@@ -3,6 +3,7 @@
 #include "BlockManager.h"
 #include "WaterManager.h"
 #include "MapManager.h"
+#include "SkillManager.h"
 #include "Player.h"
 Core* Core::m_pInst = nullptr;
 
@@ -13,6 +14,7 @@ bool Core::Init()
 	BlockManager::GetInst()->Init();
 	MapManager::GetInst()->Init();
 	WaterManager::GetInst()->Init();
+	SkillManager::GetInst()->Init();
 	return false;
 }
 
@@ -46,4 +48,5 @@ void Core::Render()
 	WaterManager::GetInst()->Render();
 	//player->Render();
 	MapManager::GetInst()->Render();
+	SkillManager::GetInst()->Render();
 }

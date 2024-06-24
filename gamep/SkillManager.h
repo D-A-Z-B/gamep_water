@@ -1,15 +1,15 @@
 #pragma once
 #include "define.h"
+#include "BlockGenSkill.h"
 class SkillManager
 {
 private:
 	SkillManager() = default;
 public:
-	bool Init();
-	void Run();
-private:
-	void Update();
+	void Init();
 	void Render();
+private:
+	void SkillInfoRender();
 public:
 	static SkillManager* GetInst()
 	{
@@ -27,7 +27,7 @@ public:
 		}*/
 	}
 public:
-	SkillManager* player;
+	BlockGenSkill blockGen;
 private:
 	static SkillManager* m_pInst;
 };

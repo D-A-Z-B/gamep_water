@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "console.h"
 #include "MapManager.h"
+#include "SkillManager.h"
 
 
 void Player::Init()
@@ -33,6 +34,12 @@ void Player::Move()
     case KEY_INPUT::RIGHT:
         newPos.x++;
         break;
+    case KEY_INPUT::BLOCKGEN: {
+        if (SkillManager::GetInst()->blockGen.CanUseSkill()) {
+            SkillManager::GetInst()->blockGen.UseSkill();
+        }
+        return;
+    }
     case KEY_INPUT::NONE:
         break;
     }
@@ -83,8 +90,8 @@ KEY_INPUT Player::KeyInput()
     if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
         return KEY_INPUT::RIGHT;
     }
-    if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-        return KEY_INPUT::JUMP;
+    if (GetAsyncKeyState(VK_SHIFT) & 0x8000) {
+        return KEY_INPUT::BLOCKGEN;
     }
     return KEY_INPUT::NONE;
 }

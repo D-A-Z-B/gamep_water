@@ -1,18 +1,22 @@
 #include "SkillManager.h"
+#include "console.h"
+SkillManager* SkillManager::m_pInst = nullptr;
 
-bool SkillManager::Init()
+void SkillManager::Init()
 {
-    return false;
-}
-
-void SkillManager::Run()
-{
-}
-
-void SkillManager::Update()
-{
+    blockGen.Init(10);
 }
 
 void SkillManager::Render()
 {
+    SkillInfoRender();
+}
+
+void SkillManager::SkillInfoRender()
+{
+    COORD Resolution = GetConsoleResolution();
+    int x = Resolution.X / 4;
+    int y = Resolution.Y / 4;
+    Gotoxy(x, y);
+    cout << "½ºÅ³ ÄðÅ¸ÀÓ: ";
 }
