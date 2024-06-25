@@ -3,7 +3,7 @@
 #include "BlockManager.h"
 #include "DestroyBlockSkill.h"
 
-void DestroyBlockSkill::Init(int skillCooldown)
+void DestroyBlockSkill::Init(float skillCooldown)
 {
 	this->skillCooldown = skillCooldown;
 }

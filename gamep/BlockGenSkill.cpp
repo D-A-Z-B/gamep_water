@@ -2,6 +2,7 @@
 #include "BlockGenSkill.h"
 #include "MapManager.h"
 #include "Object.h"
+#include "BlockManager.h"
 
 void BlockGenSkill::Init(float cooldown)
 {
@@ -11,16 +12,10 @@ void BlockGenSkill::Init(float cooldown)
 void BlockGenSkill::UseSkill(Pos playerPos)
 {
     while (true) {
-        if (GetKeyState(VK_UP)) {
-            GenerateBlock({ playerPos.x, playerPos.y - 1 });
-        }
-        else if (GetKeyState(VK_DOWN)) {
-            GenerateBlock({ playerPos.x, playerPos.y + 1 });
-        }
-        else if (GetKeyState(VK_LEFT)) {
+        if (GetKeyState(VK_LEFT)) {
             GenerateBlock({ playerPos.x - 1, playerPos.y});
         }
-        else if (GetKeyState(VK_RIGHT)) {
+        if (GetKeyState(VK_RIGHT)) {
             GenerateBlock({ playerPos.x + 1, playerPos.y });
         }
     }
@@ -48,4 +43,6 @@ void BlockGenSkill::GenerateBlock(Pos generatePos)
         return;
     }
     MapManager::GetInst()->SetMap(generatePos, ObjectType::Block);
+
+    lastAttackTime = clock();
 }

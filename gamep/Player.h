@@ -22,6 +22,7 @@ public:
 	void Render() override;
 private:
 	void Move();
+	void SKill();
 	KEY_INPUT KeyInput();
 };
 

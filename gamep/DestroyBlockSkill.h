@@ -9,7 +9,7 @@ private:
 	float skillCooldown;
 	float lastAttackTime;
 public:
-	void Init(int skillCooldown) override;
+	void Init(float skillCooldown) override;
 	void UseSkill() override;
 	void UseSkill(Pos currentPos) override;
 	bool CanUseSkill() override;

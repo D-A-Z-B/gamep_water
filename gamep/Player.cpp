@@ -16,6 +16,7 @@ void Player::Init()
 void Player::Update()
 {
     Move();
+    SKill();
 }
 
 void Player::Render()
@@ -34,17 +35,6 @@ void Player::Move()
     case KEY_INPUT::RIGHT:
         newPos.x++;
         break;
-    case KEY_INPUT::BLOCKGEN: {
-        if (SkillManager::GetInst()->blockGen->CanUseSkill()) {
-            SkillManager::GetInst()->blockGen->UseSkill(pos);
-        }
-        return;
-    }
-    case KEY_INPUT::BLOCKDESTROY: 
-    {
-        SkillManager::GetInst()->blockDestroy->UseSkill(pos);
-        return;
-    }
     case KEY_INPUT::NONE:
         break;
     }
@@ -85,6 +75,25 @@ void Player::Move()
         }
     }
     Sleep(50);
+}
+
+void Player::SKill()
+{
+    KEY_INPUT inputKey = KeyInput();
+    switch (inputKey)
+    {
+        case KEY_INPUT::BLOCKGEN: {
+            if (SkillManager::GetInst()->blockGen->CanUseSkill()) {
+                SkillManager::GetInst()->blockGen->UseSkill(pos);
+            }
+            return;
+        }
+        case KEY_INPUT::BLOCKDESTROY:
+        {
+            SkillManager::GetInst()->blockDestroy->UseSkill(pos);
+            return;
+        }
+    }
 }
 
 KEY_INPUT Player::KeyInput()
