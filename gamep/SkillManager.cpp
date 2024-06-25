@@ -5,6 +5,8 @@ SkillManager* SkillManager::m_pInst = nullptr;
 void SkillManager::Init()
 {
     //blockGen->Init(10);
+    blockDestroy = new DestroyBlockSkill;
+    blockDestroy->Init(5);
 }
 
 void SkillManager::Render()
@@ -18,5 +20,5 @@ void SkillManager::SkillInfoRender()
     int x = Resolution.X / 4;
     int y = Resolution.Y / 4;
     Gotoxy(x, y);
-    cout << "½ºÅ³ ÄðÅ¸ÀÓ: ";
+    cout << "½ºÅ³ ÄðÅ¸ÀÓ: " << 5;
 }

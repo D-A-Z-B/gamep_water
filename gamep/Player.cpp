@@ -40,6 +40,11 @@ void Player::Move()
         }
         return;
     }
+    case KEY_INPUT::BLOCKDESTROY: 
+    {
+        SkillManager::GetInst()->blockDestroy->UseSkill(pos);
+        return;
+    }
     case KEY_INPUT::NONE:
         break;
     }
@@ -84,14 +89,18 @@ void Player::Move()
 
 KEY_INPUT Player::KeyInput()
 {
-    if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+    if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
         return KEY_INPUT::LEFT;
     }
-    if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+    if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
         return KEY_INPUT::RIGHT;
     }
     if (GetAsyncKeyState(VK_SHIFT) & 0x8000) {
         return KEY_INPUT::BLOCKGEN;
+    }
+    if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
+    {
+        return KEY_INPUT::BLOCKDESTROY;
     }
     return KEY_INPUT::NONE;
 }

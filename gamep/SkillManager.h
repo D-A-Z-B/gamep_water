@@ -1,6 +1,7 @@
 #pragma once
 #include "define.h"
 #include "BlockGenSkill.h"
+#include "DestroyBlockSkill.h"
 class SkillManager
 {
 private:
@@ -28,6 +29,7 @@ public:
 	}
 public:
 	BlockGenSkill *blockGen;
+	DestroyBlockSkill* blockDestroy;
 private:
 	static SkillManager* m_pInst;
 };
