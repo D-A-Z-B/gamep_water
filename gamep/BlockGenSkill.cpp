@@ -1,4 +1,5 @@
 #include <ctime>
+#include <algorithm>
 #include "BlockGenSkill.h"
 #include "MapManager.h"
 #include "Object.h"
@@ -11,15 +12,28 @@ void BlockGenSkill::Init(float cooldown)
 
 void BlockGenSkill::UseSkill(Pos playerPos)
 {
+    if (!CanUseSkill()) return;
+    Pos generatePos;
     while (true) {
-        if (GetKeyState(VK_LEFT)) {
-            GenerateBlock({ playerPos.x - 1, playerPos.y});
+        if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
+            Pos generatePos = { playerPos.x - 1, playerPos.y };
+            if (generatePos.x < 0) {
+                return;
+            }
+            BlockManager::GetInst()->CreateBlock(generatePos);
+            break;
         }
-        if (GetKeyState(VK_RIGHT)) {
-            GenerateBlock({ playerPos.x + 1, playerPos.y });
+        if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
+            Pos generatePos = { playerPos.x + 1, playerPos.y };
+            if (generatePos.x > MAP_WIDTH - 1) {
+                return;
+            }
+            BlockManager::GetInst()->CreateBlock(generatePos);
+            break;
         }
     }
     lastAttackTime = clock();
+    Sleep(100);
 }
 
 void BlockGenSkill::UseSkill()
@@ -31,18 +45,10 @@ void BlockGenSkill::UseSkill()
 
 bool BlockGenSkill::CanUseSkill()
 {
-    if ((clock() - lastAttackTime) / CLOCKS_PER_SEC > skillCooldown) {
+    bool cooldownCheck = (clock() - lastAttackTime) / CLOCKS_PER_SEC > skillCooldown;
+    if (cooldownCheck)
+    {
         return true;
     }
     return false;
-}
-
-void BlockGenSkill::GenerateBlock(Pos generatePos)
-{
-    if (!MapManager::GetInst()->CheckObjectType(generatePos, ObjectType::None)) {
-        return;
-    }
-    MapManager::GetInst()->SetMap(generatePos, ObjectType::Block);
-
-    lastAttackTime = clock();
 }

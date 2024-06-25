@@ -83,9 +83,7 @@ void Player::SKill()
     switch (inputKey)
     {
         case KEY_INPUT::BLOCKGEN: {
-            if (SkillManager::GetInst()->blockGen->CanUseSkill()) {
-                SkillManager::GetInst()->blockGen->UseSkill(pos);
-            }
+            SkillManager::GetInst()->blockGen->UseSkill(pos);
             return;
         }
         case KEY_INPUT::BLOCKDESTROY:
@@ -98,10 +96,10 @@ void Player::SKill()
 
 KEY_INPUT Player::KeyInput()
 {
-    if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
+    if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
         return KEY_INPUT::LEFT;
     }
-    if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
+    if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
         return KEY_INPUT::RIGHT;
     }
     if (GetAsyncKeyState(VK_DOWN) & 0x8000) {

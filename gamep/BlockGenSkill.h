@@ -13,7 +13,5 @@ public:
 	void UseSkill(Pos genPos) override;
 	void UseSkill() override;
 	bool CanUseSkill() override;
-private:
-	void GenerateBlock(Pos generatePos);
 };
 
