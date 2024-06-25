@@ -90,7 +90,7 @@ KEY_INPUT Player::KeyInput()
     if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
         return KEY_INPUT::RIGHT;
     }
-    if (GetAsyncKeyState(VK_SHIFT) & 0x8000) {
+    if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
         return KEY_INPUT::BLOCKGEN;
     }
     return KEY_INPUT::NONE;
