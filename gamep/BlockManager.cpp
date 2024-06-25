@@ -23,14 +23,14 @@ void BlockManager::Update()
 		randomIndex = rand() % 3 + 1;
 		for (int i = 0; i < randomIndex; i++)
 		{
-			Block block = {{std::clamp(randomX + i, 0 , MAP_WIDTH-2) , 0}, ObjectType::Block};
+			Block block = {{ std::clamp(randomX + i, 0 , MAP_WIDTH - 2) , 0}, ObjectType::Block};
 			blockVector.push_back(block);
 		}
 		oldTime = time(NULL);
 		resultTime = 0;
 	};
 
-	for (auto &block : blockVector)
+	for (auto& block : blockVector)
 	{
 		block.Update();
 	}
@@ -41,5 +41,42 @@ void BlockManager::Render()
 	for (auto& block : blockVector)
 	{
 		block.Render();
+	}
+}
+
+bool BlockManager::FindBlock(Pos findPos)
+{
+	if (std::find(blockVector.begin(), blockVector.end(), findPos) == blockVector.end())
+		return false;
+	else
+		return true;
+}
+
+void BlockManager::EraseBlock(Pos blockPos)
+{
+	for (int i = 0; i < blockVector.size(); ++i)
+	{
+		if (blockVector[i] == blockPos)
+		{
+			MapManager::GetInst()->SetMap(blockPos, ObjectType::None);
+			blockVector.erase(blockVector.begin() + i);
+			break;
+		}
+	}
+}
+
+void BlockManager::DestroyCheck()
+{
+	std::vector<Block>::iterator iter = blockVector.begin();
+	for (; iter != blockVector.end();)
+	{
+		if (iter->isDestroy)
+		{
+			iter = blockVector.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
 	}
 }

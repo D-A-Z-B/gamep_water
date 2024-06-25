@@ -11,6 +11,10 @@ public:
 	bool Init();
 	void Update();
 	void Render();
+	bool FindBlock(Pos findPos);
+	void EraseBlock(Pos blockPos);
+private:
+	void DestroyCheck();
 public:
 	std::vector<Block> blockVector;
 private:

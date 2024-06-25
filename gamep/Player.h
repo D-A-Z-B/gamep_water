@@ -3,7 +3,7 @@
 #include "Object.h"
 
 enum class KEY_INPUT {
-	LEFT, RIGHT, BLOCKGEN, NONE
+	LEFT, RIGHT, BLOCKGEN, BLOCKDESTROY, NONE
 };
 
 class Player : public Object 
