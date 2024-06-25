@@ -13,6 +13,7 @@ public:
 	void Render();
 	bool FindBlock(Pos findPos);
 	void EraseBlock(Pos blockPos);
+	void CreateBlock(Pos blockPos);
 private:
 	void DestroyCheck();
 public:

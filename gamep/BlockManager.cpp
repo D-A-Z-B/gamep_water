@@ -23,8 +23,8 @@ void BlockManager::Update()
 		randomIndex = rand() % 3 + 1;
 		for (int i = 0; i < randomIndex; i++)
 		{
-			Block block = {{ std::clamp(randomX + i, 0 , MAP_WIDTH - 2) , 0}, ObjectType::Block};
-			blockVector.push_back(block);
+			Pos pos = { std::clamp(randomX + i, 0 , MAP_WIDTH - 2) , 0 };
+			CreateBlock(pos);
 		}
 		oldTime = time(NULL);
 		resultTime = 0;
@@ -63,6 +63,12 @@ void BlockManager::EraseBlock(Pos blockPos)
 			break;
 		}
 	}
+}
+
+void BlockManager::CreateBlock(Pos blockPos)
+{
+	Block block = { blockPos , ObjectType::Block };
+	blockVector.push_back(block);
 }
 
 void BlockManager::DestroyCheck()
