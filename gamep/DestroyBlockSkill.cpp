@@ -3,11 +3,6 @@
 #include "BlockManager.h"
 #include "DestroyBlockSkill.h"
 
-void DestroyBlockSkill::Init(int skillCooldown)
-{
-	this->skillCooldown = skillCooldown;
-}
-
 void DestroyBlockSkill::UseSkill()
 {
 }
@@ -35,16 +30,17 @@ void DestroyBlockSkill::UseSkill(Pos destroyPos)
 
     if (!BlockManager::GetInst()->FindBlock(destroyPos))
     {
+        lastSkillUseTime = clock();
         return;
     }
 
     BlockManager::GetInst()->EraseBlock(destroyPos);
-    lastAttackTime = clock();
+    lastSkillUseTime = clock();
 }
 
 bool DestroyBlockSkill::CanUseSkill()
 {
-    double time = (clock() - lastAttackTime) / CLOCKS_PER_SEC;
+    float time = (clock() - lastSkillUseTime) / CLOCKS_PER_SEC;
     if (time > skillCooldown)
     {
         return true;

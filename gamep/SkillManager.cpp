@@ -20,5 +20,8 @@ void SkillManager::SkillInfoRender()
     int x = Resolution.X / 4;
     int y = Resolution.Y / 4;
     Gotoxy(x, y);
-    cout << "½ºÅ³ ÄðÅ¸ÀÓ: " << 5;
+    cout << "ºí·° ÆÄ±« ½ºÅ³ : CTR ";
+    y++;
+    Gotoxy(x, y);
+    cout << "½ºÅ³ ÄðÅ¸ÀÓ: " << blockDestroy->ReturnCoolTime();
 }

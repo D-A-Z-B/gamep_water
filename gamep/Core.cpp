@@ -44,7 +44,6 @@ void Core::Dead()
 
 void Core::Update()
 {
-	// Obejct;
 	BlockManager::GetInst()->Update();
 	WaterManager::GetInst()->Update();
 	player->Update();
