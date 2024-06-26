@@ -23,5 +23,8 @@ void SkillManager::SkillInfoRender()
     cout << "블럭 파괴 스킬 : CTR ";
     y++;
     Gotoxy(x, y);
-    cout << "스킬 쿨타임: " << blockDestroy->ReturnCoolTime();
+    if (blockDestroy->ReturnCoolTime() <= 0)
+        cout << "스킬 쿨타임: " << "사용가능";
+    else
+        cout << "스킬 쿨타임: " << blockDestroy->ReturnCoolTime();
 }
