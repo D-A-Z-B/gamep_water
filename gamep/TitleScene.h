@@ -2,6 +2,7 @@
 void TitleRender();
 bool TitleScene();
 void InfoRender();
+void EnterAnimation();
 enum class MENU {
 	START, INFO, QUIT
 };
