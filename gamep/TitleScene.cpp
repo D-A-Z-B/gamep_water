@@ -30,6 +30,7 @@ bool TitleScene()
 		switch (eMenu)
 		{
 		case MENU::START:
+			EnterAnimation();
 			return true;
 			break;
 		case MENU::INFO:
@@ -55,6 +56,80 @@ void InfoRender()
 			break;
 		}
 	}
+}
+
+void EnterAnimation()
+{
+	COORD resolution = GetConsoleResolution();
+	int width = resolution.X;
+	int height = resolution.Y;
+	int anitime = 5;
+	system("cls");
+
+	for (int i = 0; i < 5; ++i)
+	{
+		SetColor((int)COLOR::BLACK, (int)COLOR::WHITE);
+		system("cls");
+		Sleep(anitime);
+		SetColor((int)COLOR::BLACK);
+		system("cls");
+		Sleep(anitime);
+	}
+
+	SetColor((int)COLOR::BLACK, (int)COLOR::BLUE);
+	int x = 0;
+	int y = 0;
+	int currentWid = resolution.X / 2 - 1;
+	int currentHei = resolution.Y - 1;
+
+	for (int i = 0; i < 10; ++i)
+	{
+		if (y != currentHei && x != currentWid)
+		{
+			for (int j = 0; j < currentHei; ++j)
+			{
+				Gotoxy(x, y);
+				cout << "  ";
+				y++;
+				Sleep(anitime);
+			}
+		}
+		else if (y == currentHei && x != currentWid)
+		{
+			for (int j = 0; j < currentWid; ++j)
+			{
+				x++;
+				Gotoxy(x, y);
+				cout << "  ";
+				Sleep(anitime);
+			}
+		}
+		else if (y == currentHei && x == currentWid)
+		{
+			for (int j = 0; j < currentHei; ++j)
+			{
+				y--;
+				Gotoxy(x, y);
+				cout << "  ";
+				Sleep(anitime);
+			}
+			currentHei--;
+		}
+		else if (y != currentHei && x == currentWid)
+		{
+			for (int j = 0; j < currentWid; ++j)
+			{
+				x--;
+				Gotoxy(x, y);
+				cout << "  ";
+				Sleep(anitime);
+			}
+			--currentWid;
+		}
+	}
+
+	SetColor((int)COLOR::WHITE);
+	system("cls");
 }
 
 MENU MenuRender()
