@@ -25,7 +25,7 @@ void BlockGenSkill::UseSkill(Pos playerPos)
         }
         if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
             Pos generatePos = { playerPos.x + 1, playerPos.y };
-            if (generatePos.x > MAP_WIDTH - 1) {
+            if (generatePos.x > MAP_WIDTH - 2) {
                 return;
             }
             BlockManager::GetInst()->CreateBlock(generatePos);
