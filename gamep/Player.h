@@ -23,6 +23,7 @@ public:
 private:
 	void Move();
 	void SKill();
+	void WaterCheck();
 	KEY_INPUT KeyInput();
 };
 

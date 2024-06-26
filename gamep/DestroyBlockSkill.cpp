@@ -36,6 +36,7 @@ void DestroyBlockSkill::UseSkill(Pos destroyPos)
 
     BlockManager::GetInst()->EraseBlock(destroyPos);
     lastSkillUseTime = clock();
+    Sleep(100);
 }
 
 bool DestroyBlockSkill::CanUseSkill()

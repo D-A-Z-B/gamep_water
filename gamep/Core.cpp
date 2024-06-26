@@ -37,8 +37,8 @@ void Core::Run()
 
 void Core::Dead()
 {
-	system("cls");
 	Sleep(1000);
+	system("cls");
 	isDead = true;
 }
 

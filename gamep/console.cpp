@@ -93,3 +93,11 @@ COORD GetConsoleResolution()
 	short height = info.srWindow.Bottom - info.srWindow.Top + 1;
 	return COORD{ width, height };
 }
+
+void ClearLine(int x, int y, int length)
+{
+	Gotoxy(x, y);
+	for (int i = 0; i < length; ++i) {
+		std::cout << " ";
+	}
+}

@@ -14,6 +14,7 @@ BOOL GotoPos(int x, int  y);
 int GetColor();
 void LockResize();
 COORD GetConsoleResolution();
+void ClearLine(int x, int y, int length);
 enum class COLOR
 {
     BLACK, BLUE, GREEN, SKYBLUE, RED,

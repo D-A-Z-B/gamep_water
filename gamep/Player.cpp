@@ -5,6 +5,7 @@
 #include "console.h"
 #include "MapManager.h"
 #include "SkillManager.h"
+#include "Core.h"
 
 
 void Player::Init()
@@ -17,6 +18,7 @@ void Player::Update()
 {
     Move();
     SKill();
+    WaterCheck();
 }
 
 void Player::Render()
@@ -91,6 +93,13 @@ void Player::SKill()
             SkillManager::GetInst()->blockDestroy->UseSkill(pos);
             return;
         }
+    }
+}
+
+void Player::WaterCheck()
+{
+    if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Water)) {
+        Core::GetInst()->Dead();
     }
 }
 

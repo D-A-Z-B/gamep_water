@@ -4,11 +4,7 @@
 #include "MapManager.h"
 #include "Object.h"
 #include "BlockManager.h"
-
-void BlockGenSkill::Init(float cooldown)
-{
-    skillCooldown = cooldown;
-}
+#include "Skill.h"
 
 void BlockGenSkill::UseSkill(Pos playerPos)
 {
@@ -32,7 +28,7 @@ void BlockGenSkill::UseSkill(Pos playerPos)
             break;
         }
     }
-    lastAttackTime = clock();
+    lastSkillUseTime = clock();
     Sleep(100);
 }
 
@@ -45,7 +41,7 @@ void BlockGenSkill::UseSkill()
 
 bool BlockGenSkill::CanUseSkill()
 {
-    bool cooldownCheck = (clock() - lastAttackTime) / CLOCKS_PER_SEC > skillCooldown;
+    bool cooldownCheck = (clock() - lastSkillUseTime) / CLOCKS_PER_SEC > skillCooldown;
     if (cooldownCheck)
     {
         return true;

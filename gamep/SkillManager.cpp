@@ -7,7 +7,7 @@ void SkillManager::Init()
     blockDestroy = new DestroyBlockSkill;
     blockDestroy->Init(5);
     blockGen = new BlockGenSkill();
-    blockGen->Init(2);
+    blockGen->Init(5);
 }
 
 void SkillManager::Render()
@@ -15,17 +15,34 @@ void SkillManager::Render()
     SkillInfoRender();
 }
 
-void SkillManager::SkillInfoRender()
-{
+void SkillManager::SkillInfoRender() {
     COORD Resolution = GetConsoleResolution();
-    int x = Resolution.X / 4;
-    int y = Resolution.Y / 4;
+    int x = Resolution.X / 200;
+    int y = Resolution.Y / 2;
     Gotoxy(x, y);
-    cout << "��� �ı� ��ų : CTR ";
+    std::cout << "Block Destroy Skill : CTRL ";
     y++;
     Gotoxy(x, y);
-    if (blockDestroy->ReturnCoolTime() <= 0)
-        cout << "��ų ��Ÿ��: " << "��밡��";
-    else
-        cout << "��ų ��Ÿ��: " << blockDestroy->ReturnCoolTime();
+    ClearLine(x, y, 20);
+    Gotoxy(x, y);
+    if (blockDestroy->ReturnCoolTime() <= 0) {
+        std::cout << "Skill available";
+    }
+    else {
+        std::cout << "Cooldown : " << blockDestroy->ReturnCoolTime();
+    }
+
+    y++;
+    Gotoxy(x, y);
+    std::cout << "Block Gen Skill : DOWN ";
+    y++;
+    Gotoxy(x, y);
+    ClearLine(x, y, 20);
+    Gotoxy(x, y);
+    if (blockGen->ReturnCoolTime() <= 0) {
+        std::cout << "Skill available";
+    }
+    else {
+        std::cout << "Cooldown : " << blockGen->ReturnCoolTime();
+    }
 }
