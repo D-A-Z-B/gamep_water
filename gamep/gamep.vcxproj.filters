@@ -15,15 +15,15 @@
     <Filter Include="리소스 파일\Scene">
       <UniqueIdentifier>{ce436db8-1028-41f6-ac8d-57ed2e64e6ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Scene">
+      <UniqueIdentifier>{23e01d37-2c98-4cf1-87cc-3b4873251f32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="mci.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
@@ -50,9 +50,6 @@
     <ClInclude Include="WaterManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DeadScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Skill.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -63,6 +60,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="DestroyBlockSkill.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadScene.h">
+      <Filter>헤더 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>헤더 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -117,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="DestroyBlockSkill.cpp">
       <Filter>리소스 파일\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>리소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
