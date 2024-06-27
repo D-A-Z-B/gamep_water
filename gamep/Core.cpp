@@ -52,9 +52,10 @@ void Core::Update()
 void Core::Render()
 {
 	// Render();
+	camera = new Camera(MAP_WIDTH, MAP_HEIGHT, MapManager::GetInst());
 	BlockManager::GetInst()->Render();
 	WaterManager::GetInst()->Render();
 	//player->Render();
-	MapManager::GetInst()->Render();
+	MapManager::GetInst()->Render(*camera);
 	SkillManager::GetInst()->Render();
 }
