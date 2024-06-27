@@ -114,7 +114,7 @@ KEY_INPUT Player::KeyInput()
     if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
         return KEY_INPUT::BLOCKGEN;
     }
-    if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
+    if (GetAsyncKeyState(VK_UP) & 0x8000)
     {
         return KEY_INPUT::BLOCKDESTROY;
     }

@@ -20,7 +20,7 @@ void SkillManager::SkillInfoRender() {
     int x = Resolution.X / 200;
     int y = Resolution.Y / 2;
     Gotoxy(x, y);
-    std::cout << "Block Destroy Skill : CTRL ";
+    std::cout << "Block Destroy Skill : UP ";
     y++;
     Gotoxy(x, y);
     ClearLine(x, y, 20);

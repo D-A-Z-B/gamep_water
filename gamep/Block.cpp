@@ -17,7 +17,9 @@ void Block::Update()
 	{
 		if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Player))
 		{
-			Core::GetInst()->Dead();
+			MapManager::GetInst()->SetMap(pos, ObjectType::None);
+			MapManager::GetInst()->SetMap({pos.x, pos.y + 1}, ObjectType::Block);
+			//Core::GetInst()->Dead();
 			return;
 		}
 		if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::None))

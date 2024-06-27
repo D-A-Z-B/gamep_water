@@ -15,6 +15,24 @@
     <Filter Include="리소스 파일\Scene">
       <UniqueIdentifier>{ce436db8-1028-41f6-ac8d-57ed2e64e6ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="리소스 파일\Manager">
+      <UniqueIdentifier>{64ae9d32-59ec-4821-928d-c1b155a90c76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스 파일\Object">
+      <UniqueIdentifier>{fac21612-58cc-4772-899d-dd0db26b0f71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Skill">
+      <UniqueIdentifier>{b1c8d486-1247-4a44-8dc5-c919f6031e96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Manager">
+      <UniqueIdentifier>{7ac344be-fceb-4a57-a6f4-0f273e6898a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Object">
+      <UniqueIdentifier>{cd585fe5-dad1-43dc-a9d0-ef78e0038dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Scene">
+      <UniqueIdentifier>{eded3081-7492-4272-8b8e-7a2dc1296aaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console.h">
@@ -23,81 +41,60 @@
     <ClInclude Include="mci.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TitleScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Block.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="BlockManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Core.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="define.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MapManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="WaterManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="DeadScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Skill.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="BlockGenSkill.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillManager.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Skill</Filter>
     </ClInclude>
     <ClInclude Include="DestroyBlockSkill.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillManager.h">
+      <Filter>헤더 파일\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>헤더 파일\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadScene.h">
+      <Filter>헤더 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>헤더 파일\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Block.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockManager.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockManagerCore.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="console.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Core.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MapManager.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="mci.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="WaterManager.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
@@ -117,6 +114,30 @@
     </ClCompile>
     <ClCompile Include="DestroyBlockSkill.cpp">
       <Filter>리소스 파일\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockManager.cpp">
+      <Filter>리소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>리소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterManager.cpp">
+      <Filter>리소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>리소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>리소스 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>리소스 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>리소스 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>리소스 파일\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
