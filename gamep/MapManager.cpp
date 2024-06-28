@@ -6,7 +6,9 @@ MapManager* MapManager::m_pInst = nullptr;
 bool MapManager::Init()
 {
 	arrMap = {
+		"00000000000000",
 		"00000040000000",
+		"00000000000000",
 		"00000000000000",
 		"00000000000000",
 		"00000000000000",
@@ -50,6 +52,10 @@ void MapManager::Render(int cameraY)
 			else if (arrMap[i][j] == (char)ObjectType::Block)
 			{
 				cout << "■";
+			}
+			else if (arrMap[i][j] == (char)ObjectType::Goal)
+			{
+				cout << "♨";
 			}
 			else if (arrMap[i][j] == (char)ObjectType::Water)
 			{

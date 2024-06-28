@@ -22,7 +22,7 @@ void Block::Update()
 			Core::GetInst()->Dead();
 			return;
 		}
-        if (!MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Block)) {
+        if (!MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Block) && !MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Water)) {
             MapManager::GetInst()->SetMap(pos, ObjectType::None);
             ++pos.y;
             oldTime = clock();
@@ -44,5 +44,6 @@ void Block::Init()
 	srand((unsigned int)time(NULL));
 	intervalTime = 0.1;
 	oldTime = clock();
+
 	goalPos = MapManager::GetInst()->GetPos(ObjectType::Goal);
 }
