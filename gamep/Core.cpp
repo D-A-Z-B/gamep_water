@@ -5,6 +5,7 @@
 #include "MapManager.h"
 #include "SkillManager.h"
 #include "Player.h"
+#include "Camera.h"
 #include "DeadScene.h"
 Core* Core::m_pInst = nullptr;
 
@@ -16,6 +17,7 @@ bool Core::Init()
 	MapManager::GetInst()->Init();
 	WaterManager::GetInst()->Init();
 	SkillManager::GetInst()->Init();
+	cam = new Camera;
 	return false;
 }
 
@@ -47,6 +49,7 @@ void Core::Update()
 	BlockManager::GetInst()->Update();
 	WaterManager::GetInst()->Update();
 	player->Update();
+	cam->Update(player);
 }
 
 void Core::Render()
@@ -55,6 +58,6 @@ void Core::Render()
 	BlockManager::GetInst()->Render();
 	WaterManager::GetInst()->Render();
 	//player->Render();
-	MapManager::GetInst()->Render();
+	MapManager::GetInst()->Render(cam->cameraY);
 	SkillManager::GetInst()->Render();
 }

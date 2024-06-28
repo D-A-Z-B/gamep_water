@@ -131,6 +131,7 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockGenSkill.h" />
     <ClInclude Include="BlockManager.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="DeadScene.h" />
@@ -150,6 +151,7 @@
     <ClCompile Include="BlockGenSkill.cpp" />
     <ClCompile Include="BlockManager.cpp" />
     <ClCompile Include="BlockManagerCore.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="DeadScene.cpp" />

@@ -1,6 +1,7 @@
 #pragma once
 #include "define.h"
 #include "Player.h"
+#include "Camera.h"
 
 class Core
 {
@@ -31,6 +32,7 @@ public:
 	}
 public:
 	Player *player;
+	Camera *cam;
 	bool isDead;
 private:
 	static Core* m_pInst;

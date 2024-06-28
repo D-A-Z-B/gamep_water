@@ -9,7 +9,7 @@ bool WaterManager::Init()
 {
 	oldTime = time(NULL);
 	intervalTime = 15;
-	currentY = MAP_HEIGHT - 1;
+	currentY = MapManager::GetInst()->MAP_HEIGHT - 1;
 	return false;
 }
 

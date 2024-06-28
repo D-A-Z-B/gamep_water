@@ -4,20 +4,21 @@
 #include "define.h"
 
 const int MAP_WIDTH = 15;
-const int MAP_HEIGHT = 15;
 
 class MapManager
 {
 private:
 	MapManager() = default;
 public:
-	char arrMap[MAP_HEIGHT][MAP_WIDTH] = {};
+	int MAP_HEIGHT = 15;
+	int VIEWPORT_HEIGHT = 14;
+	std::vector<std::string> arrMap;
 public:
 	bool Init();
 	void Update();
-	void Render();
-public:
+	void Render(int cameraY);
 	void SetMap(Pos pos, ObjectType type);
+public:
 	bool CheckObjectType(Pos pos, ObjectType type);
 	Pos GetPos(ObjectType type);
 public:
