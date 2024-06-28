@@ -42,7 +42,7 @@ void Player::Move()
     }
 
     newPos.x = std::clamp(newPos.x, 0, MAP_WIDTH - 1);
-    newPos.y = std::clamp(newPos.y, 0, MAP_HEIGHT);
+    newPos.y = std::clamp(newPos.y, 0, MapManager::GetInst()->MAP_HEIGHT);
 
     if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None)) {
         if (MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)
@@ -78,6 +78,7 @@ void Player::Move()
             newPos = pos;
         }
     }
+
     Sleep(50);
 }
 

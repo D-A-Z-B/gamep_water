@@ -35,6 +35,7 @@ public:
 	}
 public:
 	Player *player;
+	Camera *cam;
 	bool isDead;
 	Camera *camera;
 private:

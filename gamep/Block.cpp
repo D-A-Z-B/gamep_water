@@ -42,6 +42,6 @@ void Block::Render()
 void Block::Init()
 {
 	srand((unsigned int)time(NULL));
-	intervalTime = 0.6;
+	intervalTime = 0.1;
 	oldTime = clock();
 }
