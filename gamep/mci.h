@@ -1,3 +1,3 @@
 #pragma once
-void PlayBgm(LPCWSTR _soundname);
-void PlayEffect(LPCWSTR _soundname);
+void PlayBgm(LPCWSTR soundName, int volume);
+void PlayEffect(LPCWSTR soundName);

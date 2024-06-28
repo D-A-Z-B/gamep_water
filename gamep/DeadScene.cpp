@@ -1,9 +1,9 @@
-﻿#include <iostream>
-#include <io.h>
+﻿#include <io.h>
 #include <fcntl.h>
 #include "console.h" 
 #include "FileManager.h"
 #include "Core.h"
+#include "mci.h"
 #include "DeadScene.h"
 
 void DeadTextRender()
@@ -68,6 +68,7 @@ DeadMENU DeadSceneMenuRender()
 				Gotoxy(x - 1, y);
 				cout << " ";
 				Gotoxy(x - 1, --y);
+				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				cout << ">";
 				Sleep(100);
 			}
@@ -78,12 +79,15 @@ DeadMENU DeadSceneMenuRender()
 				Gotoxy(x - 1, y);
 				cout << " ";
 				Gotoxy(x - 1, ++y);
+				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				cout << ">";
 				Sleep(100);
 			}
 			break;
 		case DEADKEY::SPACE:
 		{
+			PlayEffect(TEXT("Sound\\buttonSelect.mp3"));
+
 			if (y == originy)
 				return DeadMENU::RETRY;
 			else if (y == originy + 1)
