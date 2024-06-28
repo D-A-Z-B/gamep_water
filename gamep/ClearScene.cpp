@@ -59,7 +59,7 @@ ClearSceneMenu ClearMenuRender()
 			}
 			break;
 		case CLEARKEY::DOWN:
-			if (originy + 2 > y)
+			if (originy + 1 > y)
 			{
 				Gotoxy(x - 1, y);
 				cout << " ";
