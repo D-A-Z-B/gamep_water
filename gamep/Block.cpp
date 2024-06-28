@@ -12,22 +12,20 @@ Block::Block(Pos pos, ObjectType objType)
 
 void Block::Update()
 {
-	currentTime = clock();
-	if (double(currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
-	{
-		if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Player))
-		{
-			Core::GetInst()->Dead();
-			return;
-		}
-		if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::None))
-		{
-			MapManager::GetInst()->SetMap(pos, ObjectType::None);
-			++pos.y;
-			oldTime = clock();
-			currentTime = 0;
-		}
-	}
+    currentTime = clock();
+    if (double(currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime) {
+        if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Player)) {
+            Core::GetInst()->Dead();
+            return;
+        }
+        if (!MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Block)) {
+            MapManager::GetInst()->SetMap(pos, ObjectType::None);
+            ++pos.y;
+            oldTime = clock();
+            currentTime = 0;
+            MapManager::GetInst()->SetMap(goalPos, ObjectType::Goal);
+        }
+    }
 }
 
 void Block::Render()
@@ -42,4 +40,5 @@ void Block::Init()
 	srand((unsigned int)time(NULL));
 	intervalTime = 0.6;
 	oldTime = clock();
+	goalPos = MapManager::GetInst()->GetPos(ObjectType::Goal);
 }

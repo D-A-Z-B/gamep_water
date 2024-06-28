@@ -18,6 +18,7 @@ public:
 private:
 	double intervalTime;
 	clock_t currentTime, oldTime;
+	Pos goalPos;
 public:
 	bool isDestroy;
 };

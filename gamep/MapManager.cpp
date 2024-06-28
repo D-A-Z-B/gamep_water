@@ -1,6 +1,7 @@
 ﻿#include "MapManager.h"
 #include "Object.h"
 #include "Camera.h"
+#include "BlockManager.h"
 
 MapManager* MapManager::m_pInst = nullptr;
 
@@ -8,7 +9,7 @@ bool MapManager::Init()
 {
     arrMap = {
         "00000000000000",
-        "00000000000000",
+        "00000040000000",
         "00000000000000",
         "00000000000000",
         "00000000000000",
@@ -40,27 +41,28 @@ void MapManager::Render(const Camera& camera)
         {
             int mapX = camera.position.x + j;
             int mapY = camera.position.y + i;
-
-            if (mapY >= 0 && mapY < arrMap.size() && mapX >= 0 && mapX < arrMap[mapY].size()) {
-                if (arrMap[mapY][mapX] == (char)ObjectType::None)
-                {
-                    std::cout << "  ";
-                }
-                else if (arrMap[mapY][mapX] == (char)ObjectType::Player)
-                {
-                    std::cout << "◈";
-                }
-                else if (arrMap[mapY][mapX] == (char)ObjectType::Block)
-                {
-                    std::cout << "■";
-                }
-                else if (arrMap[mapY][mapX] == (char)ObjectType::Water)
-                {
-                    SetColor((int)COLOR::LIGHT_BLUE);
-                    std::cout << "~~";
-                }
-                SetColor((int)COLOR::WHITE);
+            if (arrMap[mapY][mapX] == (char)ObjectType::None)
+            {
+                std::cout << "  ";
             }
+            else if (arrMap[mapY][mapX] == (char)ObjectType::Player)
+            {
+                std::cout << "◈";
+            }
+            else if (arrMap[mapY][mapX] == (char)ObjectType::Block)
+            {
+                std::cout << "■";
+            }
+            else if (arrMap[mapY][mapX] == (char)ObjectType::Goal)
+            {
+                std::cout << "♨";
+            }
+            else if (arrMap[mapY][mapX] == (char)ObjectType::Water)
+            {
+                SetColor((int)COLOR::LIGHT_BLUE);
+                std::cout << "~~";
+            }
+            SetColor((int)COLOR::WHITE);
         }
         std::cout << std::endl;
     }
@@ -68,8 +70,12 @@ void MapManager::Render(const Camera& camera)
 
 void MapManager::SetMap(Pos pos, ObjectType type)
 {
+    if (pos.x < 0 || pos.x >= MAP_WIDTH || pos.y < 0 || pos.y >= MAP_HEIGHT) {
+        return; // 유효 범위를 벗어나면 아무것도 하지 않음
+    }
     arrMap[pos.y][pos.x] = (char)type;
 }
+
 
 bool MapManager::CheckObjectType(Pos pos, ObjectType type)
 {
@@ -95,5 +101,5 @@ Pos MapManager::GetPos(ObjectType type)
 
 void MapManager::AddRow()
 {
-    arrMap.insert(arrMap.begin(), std::string(MAP_WIDTH - 1, '0'));
+    //arrMap.insert(arrMap.begin(), std::string(MAP_WIDTH - 1, '0'));
 }
