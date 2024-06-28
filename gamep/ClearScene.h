@@ -1,10 +1,10 @@
 #pragma once
 void ClearRender();
-enum class ClearScenMenu {
-	RESTART, GOTITLE, QUIT
+enum class ClearSceneMenu {
+	GOTITLE, QUIT
 };
-ClearScenMenu ClearScene();
-ClearScenMenu ClearMenuRender();
+ClearSceneMenu ClearScene();
+ClearSceneMenu ClearMenuRender();
 enum class CLEARKEY {
 	UP, DOWN, SPACE, NONE
 };

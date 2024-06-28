@@ -11,6 +11,7 @@ public:
 	bool Init();
 	void Run();
 	void Dead();
+	void Clear();
 private:
 	void Update();
 	void Render();
@@ -34,6 +35,7 @@ public:
 	Player *player;
 	Camera *cam;
 	bool isDead;
+	bool isClear;
 	Camera *camera;
 private:
 	static Core* m_pInst;

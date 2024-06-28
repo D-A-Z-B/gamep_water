@@ -7,12 +7,14 @@
 #include "Player.h"
 #include "Camera.h"
 #include "DeadScene.h"
+#include "ClearScene.h"
 Core* Core::m_pInst = nullptr;
 
 bool Core::Init()
 {
 	system("cls");
 	isDead = false;
+	isClear = false;
 	BlockManager::GetInst()->Init();
 	MapManager::GetInst()->Init();
 	WaterManager::GetInst()->Init();
@@ -24,15 +26,16 @@ bool Core::Init()
 void Core::Run()
 {
 	COORD coord = GetConsoleResolution();
-	std::string playerAppear = "��";
-	Pos startPos = { coord.X / 2, coord.Y };
-	player = new Player(startPos, playerAppear);
+	player = new Player();
 	while (true)
 	{
 		Update();
 		Gotoxy(0, 0);
 		if (isDead)
 			break;
+		if (isClear) {
+			break;
+		}
 		Render();
 	}
 }
@@ -42,6 +45,13 @@ void Core::Dead()
 	Sleep(1000);
 	system("cls");
 	isDead = true;
+}
+
+void Core::Clear()
+{
+	Sleep(1000);
+	system("cls");
+	isClear = true;
 }
 
 void Core::Update()

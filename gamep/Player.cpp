@@ -69,6 +69,7 @@ void Player::Move()
             && !MapManager::GetInst()->CheckObjectType({ pos.x, pos.y - 1 }, ObjectType::Block)) {
             MapManager::GetInst()->SetMap(pos, ObjectType::None);
             newPos = { newPos.x, newPos.y - 1 };
+            GoalCheck(newPos);
             pos = newPos;
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
         }
@@ -76,9 +77,11 @@ void Player::Move()
             newPos = pos;
         }
     }
+    GoalCheck(newPos);
 
     Sleep(50);
 }
+
 
 void Player::SKill()
 {
@@ -120,4 +123,11 @@ KEY_INPUT Player::KeyInput()
         return KEY_INPUT::BLOCKDESTROY;
     }
     return KEY_INPUT::NONE;
+}
+
+void Player::GoalCheck(Pos newPos)
+{
+    if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Goal)) {
+        Core::GetInst()->Clear();
+    }
 }

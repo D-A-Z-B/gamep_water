@@ -13,7 +13,7 @@ public:
 	Pos newPos;
 
 public:
-	Player(Pos playrPosition, std::string playerAppear) {
+	Player() {
 		Init();
 	}
 public:
@@ -25,5 +25,6 @@ private:
 	void SKill();
 	void WaterCheck();
 	KEY_INPUT KeyInput();
+	void GoalCheck(Pos newPos);
 };
 

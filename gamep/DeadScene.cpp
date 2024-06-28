@@ -52,7 +52,7 @@ DeadMENU DeadSceneMenuRender()
 	Gotoxy(x - 1, y);
 	cout << ">";
 	Gotoxy(x, y);
-	cout << "다시 시작";
+	cout << "다시 시도";
 	Gotoxy(x, y + 1);
 	cout << "시작 화면";
 	Gotoxy(x, y + 2);
