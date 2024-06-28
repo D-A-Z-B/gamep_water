@@ -6,7 +6,7 @@ MapManager* MapManager::m_pInst = nullptr;
 bool MapManager::Init()
 {
 	arrMap = {
-		"00000000000000",
+		"00000040000000",
 		"00000000000000",
 		"00000000000000",
 		"00000000000000",
@@ -87,4 +87,5 @@ Pos MapManager::GetPos(ObjectType type)
 			}
 		}
 	}
+	return { -1, -1 }; // 없을때
 }
