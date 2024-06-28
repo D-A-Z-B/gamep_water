@@ -7,13 +7,13 @@
 int main()
 {
 	DeadMENU isDead = DeadMENU::GOTITLE;
-	ClearSceneMenu clearMenu;
+	ClearSceneMenu clearMenu = ClearSceneMenu::GOTITLE;
 	system("title WATER | mode con cols=100 lines=30");
 	LockResize();
 	SetCursorVis(false, 1);
 	while (true)
 	{
-		if (isDead == DeadMENU::GOTITLE)
+		if (isDead == DeadMENU::GOTITLE && clearMenu == ClearSceneMenu::GOTITLE)
 		{
  			if (!TitleScene()) 
 			{
@@ -38,9 +38,6 @@ int main()
 			switch (clearMenu)
 			{
 			case ClearSceneMenu::GOTITLE:
-				if (!TitleScene()) {
-					return 0;
-				}
 				break;
 			case ClearSceneMenu::QUIT:
 				return 0;
