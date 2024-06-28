@@ -24,10 +24,11 @@ void Block::Update()
 		}
         if (!MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Block) && !MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Water)) {
             MapManager::GetInst()->SetMap(pos, ObjectType::None);
+			Pos gp = { pos.x , goalPos.y };
             ++pos.y;
             oldTime = clock();
             currentTime = 0;
-            MapManager::GetInst()->SetMap(goalPos, ObjectType::Goal);
+            MapManager::GetInst()->SetMap(gp, ObjectType::Goal);
         }
 	}
 }
@@ -45,5 +46,6 @@ void Block::Init()
 	intervalTime = 0.1;
 	oldTime = clock();
 
+	// 처음 나오는 골 위치
 	goalPos = MapManager::GetInst()->GetPos(ObjectType::Goal);
 }
