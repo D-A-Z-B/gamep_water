@@ -21,17 +21,73 @@ void ClearRender()
 	SetColor();
 }
 
-ClearScenMenu ClearScene()
+ClearSceneMenu ClearScene()
 {
-	return ClearScenMenu::GOTITLE;
+	while (true) {
+		system("cls");
+		ClearRender();
+		ClearSceneMenu menu =  ClearMenuRender();
+		return menu;
+	}
 }
 
-ClearScenMenu ClearMenuRender()
+ClearSceneMenu ClearMenuRender()
 {
-	return ClearScenMenu();
+	COORD Resolution = GetConsoleResolution();
+	int x = Resolution.X / 4.7;
+	int y = Resolution.Y / 2.5;
+	int originy = y;
+	Gotoxy(x - 1, y);
+	cout << ">";
+	Gotoxy(x, y );
+	cout << "시작 화면";
+	Gotoxy(x, y + 1);
+	cout << "게임 종료";
+	while (true)
+	{
+		CLEARKEY eKey = ClearkeyControllr();
+		switch (eKey)
+		{
+		case CLEARKEY::UP:
+			if (originy < y)
+			{
+				Gotoxy(x - 1, y);
+				cout << " ";
+				Gotoxy(x - 1, --y);
+				cout << ">";
+				Sleep(100);
+			}
+			break;
+		case CLEARKEY::DOWN:
+			if (originy + 2 > y)
+			{
+				Gotoxy(x - 1, y);
+				cout << " ";
+				Gotoxy(x - 1, ++y);
+				cout << ">";
+				Sleep(100);
+			}
+			break;
+		case CLEARKEY::SPACE:
+		{
+			if (y == originy )
+				return ClearSceneMenu::GOTITLE;
+			else if (y == originy + 1)
+				return ClearSceneMenu::QUIT;
+		}
+		break;
+		}
+	}
 }
 
 CLEARKEY ClearkeyControllr()
 {
-	return CLEARKEY();
+	if (GetAsyncKeyState(VK_UP) & 0x8000)
+		return CLEARKEY::UP;
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		return CLEARKEY::DOWN;
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		return CLEARKEY::SPACE;
+
+	return CLEARKEY::NONE;
 }
