@@ -152,7 +152,6 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockGenSkill.cpp" />
     <ClCompile Include="BlockManager.cpp" />
-    <ClCompile Include="BlockManagerCore.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="Core.cpp" />

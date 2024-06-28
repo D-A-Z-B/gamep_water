@@ -51,7 +51,6 @@ void Player::Move()
             newPos = { newPos.x, newPos.y + 1 };
             pos = newPos;
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
-            Core::GetInst()->GetCamera()->Move(1);
         }
         else {
             if (!MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)) {
@@ -72,7 +71,6 @@ void Player::Move()
             newPos = { newPos.x, newPos.y - 1 };
             pos = newPos;
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
-            Core::GetInst()->GetCamera()->Move(-1);
         }
         else {
             newPos = pos;
