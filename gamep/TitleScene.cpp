@@ -1,9 +1,9 @@
-﻿#include <iostream>
-#include <io.h>
+﻿#include <io.h>
 #include <fcntl.h>
 #include <thread>
 #include "console.h"
 #include "TitleScene.h"
+#include "mci.h"
 
 void TitleRender()
 {
@@ -97,7 +97,7 @@ void EnterAnimation()
 			y += dir;
 			Gotoxy(x, y);
 			cout << "  ";
-			std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+			std::this_thread::sleep_for(std::chrono::nanoseconds(250));
 		}
 
 		for (int j = 0; j < currentWid; ++j)
@@ -105,7 +105,7 @@ void EnterAnimation()
 			x += dir;
 			Gotoxy(x, y);
 			cout << "  ";
-			std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+			std::this_thread::sleep_for(std::chrono::nanoseconds(250));
 		}
 
 		currentHei--;
@@ -147,6 +147,7 @@ MENU MenuRender()
 				cout << " ";
 				Gotoxy(x - 1, --y);
 				cout << ">";
+				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				Sleep(100);
 			}
 			break;
@@ -157,11 +158,14 @@ MENU MenuRender()
 				cout << " ";
 				Gotoxy(x - 1, ++y);
 				cout << ">";
+				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				Sleep(100);
 			}
 			break;
 		case KEY::SPACE:
 		{
+			PlayEffect(TEXT("Sound\\buttonSelect.mp3"));
+
 			if (y == originy)
 				return MENU::START;
 			else if (y == originy + 1)

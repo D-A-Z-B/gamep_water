@@ -1,22 +1,29 @@
 #include <Windows.h>
 #include <mmsystem.h>
 #include <Digitalv.h>
+#include <string>
 #include "mci.h"
-#pragma comment(lib, "winmm.lib")
 
-UINT BgmId;
+UINT Bgmid;
 UINT Effectid;
-
-void PlayBgm(LPCWSTR _soundname)
+ 
+void PlayBgm(LPCWSTR soundName, int volume)
 {
-	MCI_OPEN_PARMS openBgm;
-	openBgm.lpstrElementName = _soundname;
-	// mp3: mpegvideo, wav: waveaudio
-	openBgm.lpstrDeviceType = TEXT("mpegvideo");
-	mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE | MCI_OPEN_ELEMENT, (DWORD_PTR)&openBgm);
-	BgmId = openBgm.wDeviceID;
-	MCI_PLAY_PARMS playBgm;
-	mciSendCommand(BgmId, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD_PTR)&playBgm);
+    // 다시 불러졌을 대 기존 꺼 받기 위함.
+    mciSendCommand(Bgmid, MCI_CLOSE, NULL, (DWORD)NULL);
+    MCI_OPEN_PARMS openBgm;
+    openBgm.lpstrElementName = soundName;
+    // mp3: mpegvideo, wav: waveaudio
+    openBgm.lpstrDeviceType = TEXT("mpegvideo");
+    mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE | MCI_OPEN_ELEMENT, (DWORD_PTR)&openBgm);
+    Bgmid = openBgm.wDeviceID;
+
+    // 볼륨 로직.
+    std::wstring msg = L"setaudio " + std::wstring(soundName) + L" volume to " + std::to_wstring(volume);
+    mciSendString(msg.c_str(), NULL, NULL, NULL);
+
+    MCI_PLAY_PARMS playBgm;
+    mciSendCommand(Bgmid, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD_PTR)&openBgm);
 }
 
 void PlayEffect(LPCWSTR _soundname)
