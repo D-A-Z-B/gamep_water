@@ -82,6 +82,21 @@ void LockResize()
 	}
 }
 
+void SetFontSize(UINT weight, UINT sizeX, UINT sizeY)
+{
+	// 굵게, 사이즈의 크기는 못 키우나요?
+	CONSOLE_FONT_INFOEX font;
+	font.cbSize = sizeof(font);
+
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	GetCurrentConsoleFontEx(hOut, false, &font);
+	font.FontWeight = weight;
+	font.dwFontSize.X = sizeX;
+	font.dwFontSize.Y = sizeY;
+	SetCurrentConsoleFontEx(hOut, false, &font);
+}
+
 COORD GetConsoleResolution()
 {
 	CONSOLE_SCREEN_BUFFER_INFO info;

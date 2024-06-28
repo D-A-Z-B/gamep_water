@@ -7,7 +7,7 @@ BlockManager* BlockManager::m_pInst = nullptr;
 bool BlockManager::Init()
 {
 	blockVector.clear();
-	intervalTime = 3;
+	intervalTime = 1;
 	oldTime = time(NULL);	
 	return false;
 }

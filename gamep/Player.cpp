@@ -42,7 +42,7 @@ void Player::Move()
     }
 
     newPos.x = std::clamp(newPos.x, 0, MAP_WIDTH - 1);
-    newPos.y = std::clamp(newPos.y, 0, MAP_HEIGHT);
+    newPos.y = std::clamp(newPos.y, 0, MapManager::GetInst()->MAP_HEIGHT);
 
     if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None)) {
         if (MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)
@@ -51,7 +51,6 @@ void Player::Move()
             newPos = { newPos.x, newPos.y + 1 };
             pos = newPos;
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
-            Core::GetInst()->GetCamera()->Move(1);
         }
         else {
             if (!MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)) {
@@ -72,12 +71,12 @@ void Player::Move()
             newPos = { newPos.x, newPos.y - 1 };
             pos = newPos;
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
-            Core::GetInst()->GetCamera()->Move(-1);
         }
         else {
             newPos = pos;
         }
     }
+
     Sleep(50);
 }
 
@@ -116,7 +115,7 @@ KEY_INPUT Player::KeyInput()
     if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
         return KEY_INPUT::BLOCKGEN;
     }
-    if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
+    if (GetAsyncKeyState(VK_UP) & 0x8000)
     {
         return KEY_INPUT::BLOCKDESTROY;
     }

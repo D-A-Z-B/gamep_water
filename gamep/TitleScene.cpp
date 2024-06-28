@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <io.h>
 #include <fcntl.h>
+#include <thread>
 #include "console.h"
 #include "TitleScene.h"
 
@@ -51,6 +52,9 @@ void InfoRender()
 	Sleep(100);
 	cout << "[ 조작법 ]" << endl << endl;
 	cout << "이동: <-, ->" << endl;
+	cout << "스킬" << endl;
+	cout << "블럭 파괴 스킬 : 윗 방향키로 사용, 방향키로 방향 설정" << endl;
+	cout << "블럭 생성 스킬 : 아래 방향키로 사용, 방향키로 방향 설정" << endl;
 	while (true) {
 		if (KeyController() == KEY::SPACE) {
 			break;
@@ -63,7 +67,7 @@ void EnterAnimation()
 	COORD resolution = GetConsoleResolution();
 	int width = resolution.X;
 	int height = resolution.Y;
-	int anitime = 5;
+	int anitime = 20;
 	system("cls");
 
 	for (int i = 0; i < 5; ++i)
@@ -80,8 +84,39 @@ void EnterAnimation()
 	int x = 0;
 	int y = 0;
 	int dir = 1;
-	int currentWid = resolution.X / 2;
+	int currentWid = resolution.X / 2 - 1;
 	int currentHei = resolution.Y;
+	anitime = 500;	
+	Gotoxy(x, y);
+	cout << "  ";
+
+	for (int i = 1; i <= currentWid * currentHei; ++i)
+	{
+		for (int j = 0; j < currentHei - 1; ++j)
+		{
+			y += dir;
+			Gotoxy(x, y);
+			cout << "  ";
+			std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+		}
+
+		for (int j = 0; j < currentWid; ++j)
+		{
+			x += dir;
+			Gotoxy(x, y);
+			cout << "  ";
+			std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+		}
+
+		currentHei--;
+		currentWid--;
+		dir *= -1;
+
+		y += dir;
+		Gotoxy(x, y);
+		cout << "  ";
+	}
+
 	SetColor((int)COLOR::WHITE);
 	system("cls");
 }

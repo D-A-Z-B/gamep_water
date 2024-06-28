@@ -2,6 +2,7 @@
 #include <io.h>
 #include <fcntl.h>
 #include "console.h" 
+#include "FileManager.h"
 #include "Core.h"
 #include "DeadScene.h"
 
@@ -28,8 +29,18 @@ DeadMENU DeadScene()
 		system("cls");
 		DeadTextRender();
 		DeadMENU eMenu = DeadSceneMenuRender();
+		HighScoreRender();
 		return eMenu;
 	}
+}
+
+void HighScoreRender()
+{
+	COORD Resolution = GetConsoleResolution();
+	int x = Resolution.X / 2 + 50;
+	int y = Resolution.Y / 2.5;
+	Gotoxy(x, y);
+	cout << FileManager::GetInst()->GetHighScore();
 }
 
 DeadMENU DeadSceneMenuRender()

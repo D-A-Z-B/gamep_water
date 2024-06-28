@@ -138,6 +138,7 @@
     <ClInclude Include="DeadScene.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="DestroyBlockSkill.h" />
+    <ClInclude Include="FileManager.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="mci.h" />
     <ClInclude Include="Object.h" />
@@ -151,12 +152,12 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockGenSkill.cpp" />
     <ClCompile Include="BlockManager.cpp" />
-    <ClCompile Include="BlockManagerCore.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="DeadScene.cpp" />
     <ClCompile Include="DestroyBlockSkill.cpp" />
+    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="mci.cpp" />

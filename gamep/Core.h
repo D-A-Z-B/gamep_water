@@ -11,9 +11,6 @@ public:
 	bool Init();
 	void Run();
 	void Dead();
-	Camera* GetCamera() {
-		return camera;
-	}
 private:
 	void Update();
 	void Render();
@@ -35,6 +32,7 @@ public:
 	}
 public:
 	Player *player;
+	Camera *cam;
 	bool isDead;
 	Camera *camera;
 private:

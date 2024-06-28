@@ -13,8 +13,10 @@ void SetColor(int textColor = 15, int bgColor = 0);
 BOOL GotoPos(int x, int  y);
 int GetColor();
 void LockResize();
+void SetFontSize(UINT weight, UINT sizeX, UINT sizeY);
 COORD GetConsoleResolution();
 void ClearLine(int x, int y, int length);
+
 enum class COLOR
 {
     BLACK, BLUE, GREEN, SKYBLUE, RED,
