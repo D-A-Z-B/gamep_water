@@ -21,7 +21,7 @@ void BlockManager::Update(Camera* cam)
 	{
 		srand((unsigned int)time(NULL));
 		randomX = rand() % (MAP_WIDTH - 1);
-		randomBlockInterval = (float)(rand() % (50 - 5 + 1) + 50) / 100;
+		randomBlockInterval = (float)(rand() % (50 - 10 + 1) + 10) / 100;
 		randomIndex = rand() % 3 + 1;
 		for (int i = 0; i < randomIndex; i++)
 		{
