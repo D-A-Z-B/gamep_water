@@ -65,7 +65,7 @@ void Player::Move()
     }
     else if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Block)) {
         if (!MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y - 1 }, ObjectType::Block)
-            && MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::Block)
+            && (MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::Block) || MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::BlockInWater))
             && !MapManager::GetInst()->CheckObjectType({ pos.x, pos.y - 1 }, ObjectType::Block)) {
             MapManager::GetInst()->SetMap(pos, ObjectType::None);
             newPos = { newPos.x, newPos.y - 1 };
