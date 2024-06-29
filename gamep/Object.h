@@ -14,6 +14,12 @@ struct Pos
 {
 	int x;
 	int y;
+	bool operator==(const Pos &p) const {
+		if (x == p.x && y == p.y) {
+			return true;
+		}
+		return false;
+	}
 };
 
 class Object

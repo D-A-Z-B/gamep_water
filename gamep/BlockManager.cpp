@@ -3,6 +3,7 @@
 #include "MapManager.h"
 #include "Core.h"
 #include "Object.h"
+#include "mci.h"
 BlockManager* BlockManager::m_pInst = nullptr;
 
 bool BlockManager::Init()
@@ -21,7 +22,7 @@ void BlockManager::Update(Camera* cam)
 	{
 		srand((unsigned int)time(NULL));
 		randomX = rand() % (MAP_WIDTH - 1);
-		randomBlockInterval = (float)(rand() % (50 - 5 + 1) + 50) / 100;
+		randomBlockInterval = (float)(rand() % (50 - 10 + 1) + 10) / 100;
 		randomIndex = rand() % 3 + 1;
 		for (int i = 0; i < randomIndex; i++)
 		{
@@ -34,6 +35,12 @@ void BlockManager::Update(Camera* cam)
 	for (auto& block : blockVector)
 	{
 		block.Update();
+	}
+	Pos checkDeadPos = { -1, -1 };
+	if (MapManager::GetInst()->GetPos(ObjectType::Player) == checkDeadPos) {
+		PlayEffect(TEXT("Sound\\BlockDie.mp3"));
+		Core::GetInst()->Dead();
+		return;
 	}
 }
 

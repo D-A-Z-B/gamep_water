@@ -17,14 +17,14 @@ void Block::Update()
 	currentTime = clock();
 	if ((float)(currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
-		if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Player))
-		{
-			PlayEffect(TEXT("Sound\\BlockDie.mp3"));
-			MapManager::GetInst()->SetMap(pos, ObjectType::None);
-			MapManager::GetInst()->SetMap({pos.x, pos.y + 1}, ObjectType::Block);
-			Core::GetInst()->Dead();
-			return;
-		}
+		//if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Player))
+		//{
+		//	PlayEffect(TEXT("Sound\\BlockDie.mp3"));
+		//	MapManager::GetInst()->SetMap(pos, ObjectType::None);
+		//	MapManager::GetInst()->SetMap({pos.x, pos.y + 1}, ObjectType::Block);
+		//	Core::GetInst()->Dead();
+		//	return;
+		//}
         if (!MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Block) 
 			&& !MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::BlockInWater))
 		{
