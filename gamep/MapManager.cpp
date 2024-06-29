@@ -5,26 +5,19 @@ MapManager* MapManager::m_pInst = nullptr;
 
 bool MapManager::Init()
 {
-	arrMap = {
-		"00000000000000",
-		"44444444444444",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000000000000",
-		"00000100000000",
-		"22222222222222",
-		"22222222222222",
-		"33333333333333"
-	};
+	arrMap.clear();
+	for (int i = 0; i < 30; i++)
+	{
+		if (i == 2)
+			arrMap.push_back("44444444444444");
+		else
+			arrMap.push_back("00000000000000");
+	}
+	arrMap.push_back("00000104000000");
+	arrMap.push_back("22222222222222");
+	arrMap.push_back("22222222222222");
+	arrMap.push_back("33333333333333");
+
 	MAP_HEIGHT = arrMap.size();
 	VIEWPORT_HEIGHT = 15;
 	return false;
@@ -56,6 +49,11 @@ void MapManager::Render(int cameraY)
 			else if (arrMap[i][j] == (char)ObjectType::Goal)
 			{
 				cout << "♨";
+			}
+			else if (arrMap[i][j] == (char)ObjectType::BlockInWater)
+			{
+				SetColor((int)COLOR::LIGHT_BLUE);
+				cout << "■";
 			}
 			else if (arrMap[i][j] == (char)ObjectType::Water)
 			{

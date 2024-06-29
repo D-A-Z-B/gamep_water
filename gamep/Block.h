@@ -5,7 +5,7 @@
 class Block : public Object
 {
 public:
-	Block(Pos pos, ObjectType objType);
+	Block(Pos pos, ObjectType objType, float intervalTime);
 
 	bool operator==(const Pos& other) const
 	{
@@ -16,7 +16,7 @@ public:
 	void Render() override;
 	void Init() override;
 private:
-	double intervalTime;
+	float intervalTime;
 	clock_t currentTime, oldTime;
 	Pos goalPos;
 public:

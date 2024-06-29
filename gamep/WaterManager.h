@@ -12,9 +12,9 @@ public:
 	void Update();
 	void Render();
 private:
-	int intervalTime;
+	float intervalTime;
+	clock_t currentTime, oldTime;
 	int currentY;
-	time_t oldTime, currentTime, resultTime;
 public:
 	static WaterManager* GetInst()
 	{

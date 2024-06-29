@@ -7,7 +7,7 @@ enum class ObjectType
 	Block,
 	Water,
 	Goal,
-	Item
+	BlockInWater,
 };
 
 struct Pos

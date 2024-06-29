@@ -1,17 +1,21 @@
 #include "FileManager.h"
 FileManager* FileManager::m_pInst = nullptr;
 
-int FileManager::GetHighScore()
+float FileManager::GetHighScore()
 {
 	readFile.open("Score.txt");
-	readFile >> score;
+	readFile >> clearTime;
 	readFile.close();
-	return score;
+	return clearTime;
 }
 
-void FileManager::SetHighScore(int newScore)
+void FileManager::SetHighScore(float clearTime)
 {
+	if (clearTime > GetHighScore())
+	{
+		return;
+	}
 	writeFile.open("Score.txt");
-	writeFile << newScore;
+	writeFile << clearTime;
 	writeFile.close();
 }

@@ -16,7 +16,7 @@ void BlockGenSkill::UseSkill(Pos playerPos)
             if (generatePos.x < 0) {
                 return;
             }
-            BlockManager::GetInst()->CreateBlock(generatePos);
+            BlockManager::GetInst()->CreateBlock(generatePos, 0.1f);
             break;
         }
         if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
@@ -24,7 +24,7 @@ void BlockGenSkill::UseSkill(Pos playerPos)
             if (generatePos.x > MAP_WIDTH - 2) {
                 return;
             }
-            BlockManager::GetInst()->CreateBlock(generatePos);
+            BlockManager::GetInst()->CreateBlock(generatePos, 0.1f);
             break;
         }
     }
@@ -36,15 +36,4 @@ void BlockGenSkill::UseSkill()
 {
     Pos  playerPos = MapManager::GetInst()->GetPos(ObjectType::Player);
     UseSkill(playerPos);
-}
-
-
-bool BlockGenSkill::CanUseSkill()
-{
-    bool cooldownCheck = (clock() - lastSkillUseTime) / CLOCKS_PER_SEC > skillCooldown;
-    if (cooldownCheck)
-    {
-        return true;
-    }
-    return false;
 }
