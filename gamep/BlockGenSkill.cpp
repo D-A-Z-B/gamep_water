@@ -4,6 +4,7 @@
 #include "MapManager.h"
 #include "Object.h"
 #include "BlockManager.h"
+#include "mci.h"
 #include "Skill.h"
 
 void BlockGenSkill::UseSkill(Pos playerPos)
@@ -28,6 +29,8 @@ void BlockGenSkill::UseSkill(Pos playerPos)
             break;
         }
     }
+    PlayEffect(TEXT("Sound\\BlockGenerate.mp3"));
+    onceAlarm = false;
     lastSkillUseTime = clock();
     Sleep(100);
 }

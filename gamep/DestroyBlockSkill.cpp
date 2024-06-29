@@ -38,5 +38,6 @@ void DestroyBlockSkill::UseSkill(Pos destroyPos)
     PlayEffect(TEXT("Sound\\BlockDestroy.mp3"));
     BlockManager::GetInst()->EraseBlock(destroyPos);
     lastSkillUseTime = clock();
+    onceAlarm = false;
     Sleep(100);
 }

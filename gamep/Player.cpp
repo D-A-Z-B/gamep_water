@@ -10,7 +10,7 @@
 
 void Player::Init()
 {
-    pos = MapManager::GetInst()->GetPos(ObjectType::Player);
+::Player);
     newPos = pos;
 }
 
@@ -29,12 +29,14 @@ void Player::Render()
 void Player::Move()
 {
     KEY_INPUT inputKey = KeyInput();
-    switch (inputKey)
+    switch
+inputKey)
     {
     case KEY_INPUT::LEFT:
         newPos.x--;
         break;
-    case KEY_INPUT::RIGHT:
+    case KE
+INPUT::RIGHT:
         newPos.x++;
         break;
     case KEY_INPUT::NONE:
@@ -44,21 +46,25 @@ void Player::Move()
     newPos.x = std::clamp(newPos.x, 0, MAP_WIDTH - 1);
     newPos.y = std::clamp(newPos.y, 0, MapManager::GetInst()->MAP_HEIGHT);
 
-    if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None)) {
-        if (MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)
-            && !MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 2 }, ObjectType::None)) {
-            MapManager::GetInst()->SetMap(pos, ObjectType::None);
+    if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None))
+    {
+        if (MapManager::GetInst()->CheckO ype({ newPos.x, newPos.y + 1 }, ObjectType::None)
+            && !MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 2 }, ObjectType::None))
+        {
+            MapManager::GetInst()->ObjectType::None);
             newPos = { newPos.x, newPos.y + 1 };
             pos = newPos;
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
         }
-        else {
-            if (!MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)) {
-                MapManager::GetInst()->SetMap(pos, ObjectType::None);
+        else 
+        {
+           
+f (!MapManager::GetInst(jectType({ newPos.x, newPos.y + 1 }, ObjectType::None))
+            {
+                MapManager::GetIn os, ObjectType::None);
                 pos = newPos;
                 MapManager::GetInst()->SetMap(pos, ObjectType::Player);
             }
-            else {
                 newPos = pos;
             }
         }

@@ -29,7 +29,7 @@ void SkillManager::SkillInfoRender() {
         std::cout << "Skill available";
     }
     else {
-        std::cout << "Cooldown : " << blockDestroy->ReturnCoolTime();
+        std::cout << "Cooldown : " << (int)blockDestroy->ReturnCoolTime();
     }
 
     y++;
@@ -43,6 +43,6 @@ void SkillManager::SkillInfoRender() {
         std::cout << "Skill available";
     }
     else {
-        std::cout << "Cooldown : " << blockGen->ReturnCoolTime();
+        std::cout << "Cooldown : " << (int)blockGen->ReturnCoolTime();
     }
 }
