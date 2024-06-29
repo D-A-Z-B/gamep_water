@@ -15,6 +15,7 @@ private:
 	float intervalTime;
 	clock_t currentTime, oldTime;
 	int currentY;
+	int count;
 public:
 	static WaterManager* GetInst()
 	{

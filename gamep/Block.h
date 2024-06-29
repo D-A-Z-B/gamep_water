@@ -19,6 +19,7 @@ private:
 	float intervalTime;
 	clock_t currentTime, oldTime;
 	Pos goalPos;
+	Pos beforePos;
 public:
 	bool isDestroy;
 };

@@ -20,6 +20,7 @@ void WaterManager::Update()
 	if ((currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
 		PlayEffect(TEXT("Sound\\Water.mp3"));
+		count++;
 		currentY--;
 		for (int i = 0; i < MAP_WIDTH - 1; i++)
 		{
@@ -35,16 +36,19 @@ void WaterManager::Update()
 
 void WaterManager::Render()
 {
-	for (int i = 0; i < MAP_WIDTH-1; i++)
+	for (int i = MapManager::GetInst()->MAP_HEIGHT - 1; i >= currentY; i--)
 	{
-		if (MapManager::GetInst()->CheckObjectType({ i, currentY }, ObjectType::Block))
+		for (int j = 0; j < MAP_WIDTH - 1; j++)
 		{
-			MapManager::GetInst()->SetMap({ i, currentY }, ObjectType::BlockInWater);
-		}
-		else if(!MapManager::GetInst()->CheckObjectType({ i, currentY }, ObjectType::Block)
-			&& !MapManager::GetInst()->CheckObjectType({ i, currentY }, ObjectType::BlockInWater))
-		{
-			MapManager::GetInst()->SetMap({ i, currentY }, ObjectType::Water);
+			if (MapManager::GetInst()->CheckObjectType({ j, i }, ObjectType::Block))
+			{
+				MapManager::GetInst()->SetMap({ j, i }, ObjectType::BlockInWater);
+			}
+			else if (!MapManager::GetInst()->CheckObjectType({ j, i }, ObjectType::Block) 
+				&& !MapManager::GetInst()->CheckObjectType({ j, i }, ObjectType::BlockInWater))
+			{
+				MapManager::GetInst()->SetMap({ j, i }, ObjectType::Water);
+			}
 		}
 	}
 }

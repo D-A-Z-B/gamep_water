@@ -1,16 +1,17 @@
 #include <iostream>
 #include <Windows.h>
 #include <algorithm>
-#include "Player.h"
+#include "mci.h"
 #include "console.h"
 #include "MapManager.h"
 #include "SkillManager.h"
 #include "Core.h"
+#include "Player.h"
 
 
 void Player::Init()
 {
-::Player);
+    pos = MapManager::GetInst()->GetPos(ObjectType::Player);
     newPos = pos;
 }
 
@@ -29,14 +30,12 @@ void Player::Render()
 void Player::Move()
 {
     KEY_INPUT inputKey = KeyInput();
-    switch
-inputKey)
+    switch (inputKey)
     {
     case KEY_INPUT::LEFT:
         newPos.x--;
         break;
-    case KE
-INPUT::RIGHT:
+    case KEY_INPUT::RIGHT:
         newPos.x++;
         break;
     case KEY_INPUT::NONE:
@@ -48,38 +47,43 @@ INPUT::RIGHT:
 
     if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::None))
     {
-        if (MapManager::GetInst()->CheckO ype({ newPos.x, newPos.y + 1 }, ObjectType::None)
+        if (MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None)
             && !MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 2 }, ObjectType::None))
         {
-            MapManager::GetInst()->ObjectType::None);
+            MapManager::GetInst()->SetMap(pos, ObjectType::None);
             newPos = { newPos.x, newPos.y + 1 };
             pos = newPos;
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
         }
-        else 
+        else
         {
-           
-f (!MapManager::GetInst(jectType({ newPos.x, newPos.y + 1 }, ObjectType::None))
+            if (!MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::None))
             {
-                MapManager::GetIn os, ObjectType::None);
+                MapManager::GetInst()->SetMap(pos, ObjectType::None);
                 pos = newPos;
                 MapManager::GetInst()->SetMap(pos, ObjectType::Player);
             }
+            else
+            {
                 newPos = pos;
             }
         }
     }
-    else if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Block)) {
+    else if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Block))
+    {
         if (!MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y - 1 }, ObjectType::Block)
             && (MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::Block) || MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::BlockInWater))
-            && !MapManager::GetInst()->CheckObjectType({ pos.x, pos.y - 1 }, ObjectType::Block)) {
+            && !MapManager::GetInst()->CheckObjectType({ pos.x, pos.y - 1 }, ObjectType::Block))
+        {
             MapManager::GetInst()->SetMap(pos, ObjectType::None);
             newPos = { newPos.x, newPos.y - 1 };
             GoalCheck(newPos);
             pos = newPos;
+            PlayEffect(TEXT("Sound\\PlayerMove.mp3"));
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
         }
-        else {
+        else
+        {
             newPos = pos;
         }
     }
@@ -94,21 +98,22 @@ void Player::SKill()
     KEY_INPUT inputKey = KeyInput();
     switch (inputKey)
     {
-        case KEY_INPUT::BLOCKGEN: {
-            SkillManager::GetInst()->blockGen->UseSkill(pos);
-            return;
-        }
-        case KEY_INPUT::BLOCKDESTROY:
-        {
-            SkillManager::GetInst()->blockDestroy->UseSkill(pos);
-            return;
-        }
+    case KEY_INPUT::BLOCKGEN: {
+        SkillManager::GetInst()->blockGen->UseSkill(pos);
+        return;
+    }
+    case KEY_INPUT::BLOCKDESTROY:
+    {
+        SkillManager::GetInst()->blockDestroy->UseSkill(pos);
+        return;
+    }
     }
 }
 
 void Player::WaterCheck()
 {
-    if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Water)) {
+    if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Water))
+    {
         MapManager::GetInst()->SetMap(pos, ObjectType::None);
         Sleep(1000);
         Core::GetInst()->Dead();
@@ -117,13 +122,16 @@ void Player::WaterCheck()
 
 KEY_INPUT Player::KeyInput()
 {
-    if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+    if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+    {
         return KEY_INPUT::LEFT;
     }
-    if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+    if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+    {
         return KEY_INPUT::RIGHT;
     }
-    if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+    if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+    {
         return KEY_INPUT::BLOCKGEN;
     }
     if (GetAsyncKeyState(VK_UP) & 0x8000)
@@ -135,7 +143,8 @@ KEY_INPUT Player::KeyInput()
 
 void Player::GoalCheck(Pos newPos)
 {
-    if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Goal)) {
+    if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Goal))
+    {
         Core::GetInst()->Clear();
     }
 }

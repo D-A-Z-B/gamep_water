@@ -31,6 +31,11 @@ void Block::Update()
             MapManager::GetInst()->SetMap(pos, ObjectType::None);
 			Pos gp = { pos.x , goalPos.y };
             ++pos.y;
+			if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Block)
+				|| MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::BlockInWater))
+			{
+				PlayEffect(TEXT("Sound\\BlockFall.mp3"));
+			}
             oldTime = clock();
             MapManager::GetInst()->SetMap(gp, ObjectType::Goal);
         }
