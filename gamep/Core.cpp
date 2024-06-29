@@ -62,6 +62,21 @@ void Core::Clear()
 	delete cam;
 }
 
+void Core::CheckPhase(Pos pos)
+{
+	if (pos.y < playerMostHighPos.y)
+	{
+		playerMostHighPos = pos;
+
+		if (playerMostHighPos.y < MapManager::GetInst()->MAP_HEIGHT * 0.25f)
+			currentPhase = Phase::four;
+		else if (playerMostHighPos.y < MapManager::GetInst()->MAP_HEIGHT * 0.5f)
+			currentPhase = Phase::three;
+		else if (playerMostHighPos.y < MapManager::GetInst()->MAP_HEIGHT * 0.75f)
+			currentPhase = Phase::two;
+	}
+}
+
 void Core::Update()
 {
 	BlockManager::GetInst()->Update(cam);

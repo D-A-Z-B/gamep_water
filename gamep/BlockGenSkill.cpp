@@ -12,6 +12,11 @@ void BlockGenSkill::UseSkill(Pos playerPos)
     if (!CanUseSkill()) return;
     Pos generatePos;
     while (true) {
+        if (!onceUseAlarm)
+        {
+            PlayEffect(TEXT("Sound\\SkillUse.mp3"));
+            onceUseAlarm = true;
+        }
         if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
             Pos generatePos = { playerPos.x - 1, playerPos.y };
             if (generatePos.x < 0) {
@@ -30,7 +35,8 @@ void BlockGenSkill::UseSkill(Pos playerPos)
         }
     }
     PlayEffect(TEXT("Sound\\BlockGenerate.mp3"));
-    onceAlarm = false;
+    onceCoolAlarm = false;
+    onceUseAlarm = false;
     lastSkillUseTime = clock();
     Sleep(100);
 }

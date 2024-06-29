@@ -9,15 +9,16 @@ WaterManager* WaterManager::m_pInst = nullptr;
 bool WaterManager::Init()
 {
 	oldTime = clock();
-	intervalTime = 10;
+	intervalTime = 13;
 	currentY = MapManager::GetInst()->MAP_HEIGHT - 1;
 	return false;
 }
 
 void WaterManager::Update()
 {
+	PhaseChangeCheck();
 	currentTime = clock();
-	if ((currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
+	if ((float)(currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
 		PlayEffect(TEXT("Sound\\Water.mp3"));
 		count++;
@@ -50,5 +51,21 @@ void WaterManager::Render()
 				MapManager::GetInst()->SetMap({ j, i }, ObjectType::Water);
 			}
 		}
+	}
+}
+
+void WaterManager::PhaseChangeCheck()
+{
+	switch (Core::GetInst()->currentPhase)
+	{
+		case Core::Phase::two:
+			intervalTime = 11;
+			break;
+		case Core::Phase::three:
+			intervalTime = 9;
+			break;
+		case Core::Phase::four:
+			intervalTime = 7;
+			break;
 	}
 }

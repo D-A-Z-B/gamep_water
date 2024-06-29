@@ -12,7 +12,7 @@ void Skill::Init(int skillCooldown)
 
 bool Skill::CanUseSkill()
 {
-	bool cooldownCheck = (clock() - lastSkillUseTime) / CLOCKS_PER_SEC >= skillCooldown;
+	bool cooldownCheck = (float)(clock() - lastSkillUseTime) / CLOCKS_PER_SEC >= skillCooldown;
 	if (cooldownCheck)
 	{
 		return true;
@@ -27,10 +27,10 @@ float Skill::ReturnCoolTime()
 	float time = (skillCooldown - (clock() - lastSkillUseTime) / CLOCKS_PER_SEC);
 	if (time <= 0)
 	{
-		if (!onceAlarm)
+		if (!onceCoolAlarm)
 		{
 			PlayEffect(TEXT("Sound\\SkillEnabled.mp3"));
-			onceAlarm = true;
+			onceCoolAlarm = true;
 		}
 		return 0;
 	}

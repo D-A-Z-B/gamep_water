@@ -17,6 +17,11 @@ void DestroyBlockSkill::UseSkill(Pos destroyPos)
 
     while (true)
     {
+        if (!onceUseAlarm)
+        {
+            PlayEffect(TEXT("Sound\\SkillUse.mp3"));
+            onceUseAlarm = true;
+        }
         if (GetAsyncKeyState(VK_LEFT) & 0x0001)
         {
             destroyPos.x--;
@@ -32,12 +37,14 @@ void DestroyBlockSkill::UseSkill(Pos destroyPos)
     if (!BlockManager::GetInst()->FindBlock(destroyPos))
     {
         lastSkillUseTime = clock();
+        onceUseAlarm = false;
         return;
     }
 
     PlayEffect(TEXT("Sound\\BlockDestroy.mp3"));
     BlockManager::GetInst()->EraseBlock(destroyPos);
     lastSkillUseTime = clock();
-    onceAlarm = false;
+    onceUseAlarm = false;
+    onceCoolAlarm = false;
     Sleep(100);
 }

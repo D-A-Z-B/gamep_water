@@ -79,6 +79,7 @@ void Player::Move()
             newPos = { newPos.x, newPos.y - 1 };
             GoalCheck(newPos);
             pos = newPos;
+            Core::GetInst()->CheckPhase(pos);
             PlayEffect(TEXT("Sound\\PlayerMove.mp3"));
             MapManager::GetInst()->SetMap(pos, ObjectType::Player);
         }

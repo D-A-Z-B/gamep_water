@@ -15,7 +15,7 @@ Block::Block(Pos pos, ObjectType objType, float intervalTime)
 void Block::Update()
 {
 	currentTime = clock();
-	if ((currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
+	if ((float)(currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
 		if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Player))
 		{
@@ -57,6 +57,5 @@ void Block::Render()
 void Block::Init()
 {
 	oldTime = clock();
-	// ó�� ������ �� ��ġ
 	goalPos = MapManager::GetInst()->GetPos(ObjectType::Goal);
 }

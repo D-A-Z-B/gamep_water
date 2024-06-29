@@ -6,7 +6,8 @@ class Skill
 protected:
 	float skillCooldown;
 	float lastSkillUseTime;
-	bool onceAlarm;
+	bool onceCoolAlarm;
+	bool onceUseAlarm;
 public:
 	virtual void Init(int skillCooldown);
 	virtual void UseSkill() abstract;

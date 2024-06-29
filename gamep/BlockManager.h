@@ -17,13 +17,14 @@ public:
 	void CreateBlock(Pos blockPos, float intervalTime);
 private:
 	void DestroyCheck();
+	void PhaseChangeCheck();
 public:
 	std::vector<Block> blockVector;
 private:
 	float intervalTime;
+	float randomBlockInterval;
 	clock_t currentTime, oldTime;
 	int randomIndex;
-	int randomBlockInterval;
 	int randomX;
 public:
 	static BlockManager* GetInst()

@@ -13,7 +13,7 @@ bool MapManager::Init()
 		else
 			arrMap.push_back("00000000000000");
 	}
-	arrMap.push_back("00000104000000");
+	arrMap.push_back("00000100000000");
 	arrMap.push_back("22222222222222");
 	arrMap.push_back("22222222222222");
 	arrMap.push_back("33333333333333");
@@ -48,6 +48,7 @@ void MapManager::Render(int cameraY)
 			}
 			else if (arrMap[i][j] == (char)ObjectType::Goal)
 			{
+				SetColor((int)COLOR::LIGHT_YELLOW);
 				cout << "♨";
 			}
 			else if (arrMap[i][j] == (char)ObjectType::BlockInWater)

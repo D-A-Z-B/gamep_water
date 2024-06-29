@@ -5,6 +5,14 @@
 
 class Core
 {
+public:
+enum class Phase
+{
+	one,
+	two,
+	three,
+	four
+};
 private:
 	Core() = default;
 public:
@@ -13,6 +21,7 @@ public:
 	void Dead();
 	void Clear();
 	float ReturnCurrentTime() { return currentTime / CLOCKS_PER_SEC; }
+	void CheckPhase(Pos pos);
 private:
 	void Update();
 	void Render();
@@ -37,9 +46,11 @@ public:
 	Camera *cam;
 	bool isDead;
 	bool isClear;
+	Phase currentPhase = Phase::one;
 private:
 	clock_t startTime;
 	float currentTime;
+	Pos playerMostHighPos;
 private:
 	static Core* m_pInst;
 };

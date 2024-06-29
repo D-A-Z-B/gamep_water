@@ -1,29 +1,32 @@
 #include <algorithm>
 #include "BlockManager.h"
 #include "MapManager.h"
+#include "Core.h"
 #include "Object.h"
 BlockManager* BlockManager::m_pInst = nullptr;
 
 bool BlockManager::Init()
 {
 	blockVector.clear();
-	intervalTime = 3;
+	intervalTime = 2.5f;
 	oldTime = clock();
 	return false;
 }
 
 void BlockManager::Update(Camera* cam)
 {
+	PhaseChangeCheck();
 	currentTime = clock();
-	if ((currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
+	if ((float)(currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
 		srand((unsigned int)time(NULL));
 		randomX = rand() % (MAP_WIDTH - 1);
+		randomBlockInterval = (float)(rand() % (50 - 5 + 1) + 50) / 100;
 		randomIndex = rand() % 3 + 1;
 		for (int i = 0; i < randomIndex; i++)
 		{
 			Pos pos = { std::clamp(randomX + i, 0 , MAP_WIDTH - 2) , cam->cameraY };
-			CreateBlock(pos, 0.5);
+			CreateBlock(pos, randomBlockInterval);
 		}
 		oldTime = clock();
 	};
@@ -82,5 +85,21 @@ void BlockManager::DestroyCheck()
 		{
 			++iter;
 		}
+	}
+}
+
+void BlockManager::PhaseChangeCheck()
+{
+	switch (Core::GetInst()->currentPhase)
+	{
+	case Core::Phase::two:
+		intervalTime = 2;
+		break;
+	case Core::Phase::three:
+		intervalTime = 1.75f;
+		break;
+	case Core::Phase::four:
+		intervalTime = 1.25f;
+		break;
 	}
 }

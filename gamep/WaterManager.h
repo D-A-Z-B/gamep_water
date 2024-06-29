@@ -12,6 +12,8 @@ public:
 	void Update();
 	void Render();
 private:
+	void PhaseChangeCheck();
+private:
 	float intervalTime;
 	clock_t currentTime, oldTime;
 	int currentY;
