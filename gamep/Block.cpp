@@ -52,6 +52,6 @@ void Block::Render()
 void Block::Init()
 {
 	oldTime = clock();
-	// Ã³À½ ³ª¿À´Â °ñ À§Ä¡
+	// Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡
 	goalPos = MapManager::GetInst()->GetPos(ObjectType::Goal);
 }

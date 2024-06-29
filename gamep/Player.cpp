@@ -71,7 +71,7 @@ f (!MapManager::GetInst(jectType({ newPos.x, newPos.y + 1 }, ObjectType::None))
     }
     else if (MapManager::GetInst()->CheckObjectType(newPos, ObjectType::Block)) {
         if (!MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y - 1 }, ObjectType::Block)
-            && MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::Block)
+            && (MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::Block) || MapManager::GetInst()->CheckObjectType({ newPos.x, newPos.y + 1 }, ObjectType::BlockInWater))
             && !MapManager::GetInst()->CheckObjectType({ pos.x, pos.y - 1 }, ObjectType::Block)) {
             MapManager::GetInst()->SetMap(pos, ObjectType::None);
             newPos = { newPos.x, newPos.y - 1 };
@@ -109,6 +109,8 @@ void Player::SKill()
 void Player::WaterCheck()
 {
     if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Water)) {
+        MapManager::GetInst()->SetMap(pos, ObjectType::None);
+        Sleep(1000);
         Core::GetInst()->Dead();
     }
 }

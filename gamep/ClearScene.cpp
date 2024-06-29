@@ -6,6 +6,7 @@
 #include "Core.h"
 #include "mci.h"
 #include "ClearScene.h"
+#include "mci.h"
 
 float beforeHighScore;
 
@@ -93,6 +94,7 @@ ClearSceneMenu ClearMenuRender()
 				Gotoxy(x - 1, --y);
 				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				cout << ">";
+				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				Sleep(100);
 			}
 			break;
@@ -104,6 +106,7 @@ ClearSceneMenu ClearMenuRender()
 				Gotoxy(x - 1, ++y);
 				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				cout << ">";
+				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				Sleep(100);
 			}
 			break;
