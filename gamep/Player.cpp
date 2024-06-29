@@ -103,6 +103,8 @@ void Player::SKill()
 void Player::WaterCheck()
 {
     if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Water)) {
+        MapManager::GetInst()->SetMap(pos, ObjectType::None);
+        Sleep(1000);
         Core::GetInst()->Dead();
     }
 }

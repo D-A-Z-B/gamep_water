@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include "console.h" 
 #include "ClearScene.h"
+#include "mci.h"
 
 void ClearRender()
 {
@@ -55,6 +56,7 @@ ClearSceneMenu ClearMenuRender()
 				cout << " ";
 				Gotoxy(x - 1, --y);
 				cout << ">";
+				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				Sleep(100);
 			}
 			break;
@@ -65,12 +67,15 @@ ClearSceneMenu ClearMenuRender()
 				cout << " ";
 				Gotoxy(x - 1, ++y);
 				cout << ">";
+				PlayEffect(TEXT("Sound\\buttonMove.mp3"));
 				Sleep(100);
 			}
 			break;
 		case CLEARKEY::SPACE:
 		{
-			if (y == originy )
+			PlayEffect(TEXT("Sound\\buttonSelect.mp3"));
+
+			if (y == originy)
 				return ClearSceneMenu::GOTITLE;
 			else if (y == originy + 1)
 				return ClearSceneMenu::QUIT;
