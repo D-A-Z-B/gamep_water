@@ -8,6 +8,5 @@ public:
 public:
 	void UseSkill(Pos genPos) override;
 	void UseSkill() override;
-	bool CanUseSkill() override;
 };
 

@@ -1,5 +1,6 @@
 #include "WaterManager.h"
 #include "MapManager.h"
+#include "mci.h"
 #include "console.h"
 #include "Core.h"
 
@@ -7,18 +8,18 @@ WaterManager* WaterManager::m_pInst = nullptr;
 
 bool WaterManager::Init()
 {
-	oldTime = time(NULL);
-	intervalTime = 15;
+	oldTime = clock();
+	intervalTime = 10;
 	currentY = MapManager::GetInst()->MAP_HEIGHT - 1;
 	return false;
 }
 
 void WaterManager::Update()
 {
-	currentTime = time(NULL);
-	resultTime = currentTime - oldTime;
-	if (resultTime == intervalTime)
+	currentTime = clock();
+	if ((currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
+		PlayEffect(TEXT("Sound\\Water.mp3"));
 		currentY--;
 		for (int i = 0; i < MAP_WIDTH - 1; i++)
 		{
@@ -28,8 +29,7 @@ void WaterManager::Update()
 				return;
 			}
 		}
-		oldTime = time(NULL);
-		resultTime = 0;
+		oldTime = clock();
 	};
 }
 
@@ -37,6 +37,14 @@ void WaterManager::Render()
 {
 	for (int i = 0; i < MAP_WIDTH-1; i++)
 	{
-		MapManager::GetInst()->SetMap({ i, currentY }, ObjectType::Water);
+		if (MapManager::GetInst()->CheckObjectType({ i, currentY }, ObjectType::Block))
+		{
+			MapManager::GetInst()->SetMap({ i, currentY }, ObjectType::BlockInWater);
+		}
+		else if(!MapManager::GetInst()->CheckObjectType({ i, currentY }, ObjectType::Block)
+			&& !MapManager::GetInst()->CheckObjectType({ i, currentY }, ObjectType::BlockInWater))
+		{
+			MapManager::GetInst()->SetMap({ i, currentY }, ObjectType::Water);
+		}
 	}
 }

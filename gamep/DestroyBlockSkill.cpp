@@ -1,6 +1,7 @@
 #include <time.h>
 #include <Windows.h>
 #include "BlockManager.h"
+#include "mci.h"
 #include "DestroyBlockSkill.h"
 
 void DestroyBlockSkill::UseSkill()
@@ -34,17 +35,8 @@ void DestroyBlockSkill::UseSkill(Pos destroyPos)
         return;
     }
 
+    PlayEffect(TEXT("Sound\\BlockDestroy.mp3"));
     BlockManager::GetInst()->EraseBlock(destroyPos);
     lastSkillUseTime = clock();
     Sleep(100);
-}
-
-bool DestroyBlockSkill::CanUseSkill()
-{
-    float time = (clock() - lastSkillUseTime) / CLOCKS_PER_SEC;
-    if (time > skillCooldown)
-    {
-        return true;
-    }
-    return false;
 }

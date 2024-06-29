@@ -2,11 +2,13 @@
 #include <fcntl.h>
 #include <thread>
 #include "console.h"
+#include "FileManager.h"
 #include "TitleScene.h"
 #include "mci.h"
 
 void TitleRender()
 {
+	Gotoxy(0, 0);
 	SetColor((char)COLOR::BLUE);
 	int prevmode = _setmode(_fileno(stdout), _O_U16TEXT);
 	wcout << L"		 ▄█     █▄     ▄████████     ███        ▄████████    ▄████████ "  << endl;
@@ -24,8 +26,10 @@ void TitleRender()
 
 bool TitleScene()
 {
+	PlayBgm(TEXT("Sound\\TitleScene.mp3"), 300);
 	while (true) {
 		system("cls");
+		HighScoreRender();
 		TitleRender();
 		MENU eMenu = MenuRender();
 		switch (eMenu)
@@ -43,8 +47,6 @@ bool TitleScene()
 		}
 	}
 }
-
-
 
 void InfoRender()
 {
@@ -119,6 +121,18 @@ void EnterAnimation()
 
 	SetColor((int)COLOR::WHITE);
 	system("cls");
+}
+
+void HighScoreRender()
+{
+	COORD Resolution = GetConsoleResolution();
+	int x = Resolution.X / 5 + 10;
+	int y = Resolution.Y / 3;
+	Gotoxy(x, y);
+	float time = FileManager::GetInst()->GetHighScore();
+	int min = (int)time / 60;
+	int sec = (int)time % 60;
+	cout << "최단 기록: " << min << "분 " << sec << "초";
 }
 
 MENU MenuRender()

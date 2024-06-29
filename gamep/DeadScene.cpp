@@ -8,6 +8,7 @@
 
 void DeadTextRender()
 {
+	Gotoxy(0, 0);
 	int prevmode = _setmode(_fileno(stdout), _O_U16TEXT);
 	SetColor((char)COLOR::RED, (char)COLOR::BLACK);
 	wcout << L"		▄██   ▄    ▄██████▄  ███    █▄       ████████▄   ▄█     ▄████████  " << endl;
@@ -25,22 +26,13 @@ void DeadTextRender()
 
 DeadMENU DeadScene()
 {
+	PlayBgm(TEXT("Sound\\GameOver.mp3"), 300);
 	while (true) {
 		system("cls");
 		DeadTextRender();
 		DeadMENU eMenu = DeadSceneMenuRender();
-		HighScoreRender();
 		return eMenu;
 	}
-}
-
-void HighScoreRender()
-{
-	COORD Resolution = GetConsoleResolution();
-	int x = Resolution.X / 2 + 50;
-	int y = Resolution.Y / 2.5;
-	Gotoxy(x, y);
-	cout << FileManager::GetInst()->GetHighScore();
 }
 
 DeadMENU DeadSceneMenuRender()

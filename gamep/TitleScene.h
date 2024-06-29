@@ -3,6 +3,7 @@ void TitleRender();
 bool TitleScene();
 void InfoRender();
 void EnterAnimation();
+void HighScoreRender();
 enum class MENU {
 	START, INFO, QUIT
 };

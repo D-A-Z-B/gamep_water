@@ -68,15 +68,18 @@
     <ClInclude Include="Camera.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ClearScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="BlockManager.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockManagerCore.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="console.cpp">
@@ -123,6 +126,12 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>리소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>리소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearScene.cpp">
+      <Filter>리소스 파일\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

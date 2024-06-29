@@ -7,27 +7,25 @@ BlockManager* BlockManager::m_pInst = nullptr;
 bool BlockManager::Init()
 {
 	blockVector.clear();
-	intervalTime = 1;
-	oldTime = time(NULL);	
+	intervalTime = 3;
+	oldTime = clock();
 	return false;
 }
 
-void BlockManager::Update()
+void BlockManager::Update(Camera* cam)
 {
-	currentTime = time(NULL);
-	resultTime = currentTime - oldTime;
-	if (resultTime == intervalTime)
+	currentTime = clock();
+	if ((currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
 		srand((unsigned int)time(NULL));
 		randomX = rand() % (MAP_WIDTH - 1);
 		randomIndex = rand() % 3 + 1;
 		for (int i = 0; i < randomIndex; i++)
 		{
-			Pos pos = { std::clamp(randomX + i, 0 , MAP_WIDTH - 2) , 0 };
-			CreateBlock(pos);
+			Pos pos = { std::clamp(randomX + i, 0 , MAP_WIDTH - 2) , cam->cameraY };
+			CreateBlock(pos, 0.5);
 		}
-		oldTime = time(NULL);
-		resultTime = 0;
+		oldTime = clock();
 	};
 
 	for (auto& block : blockVector)
@@ -65,9 +63,9 @@ void BlockManager::EraseBlock(Pos blockPos)
 	}
 }
 
-void BlockManager::CreateBlock(Pos blockPos)
+void BlockManager::CreateBlock(Pos blockPos, float intervalTime)
 {
-	Block block = { blockPos , ObjectType::Block };
+	Block block = { blockPos , ObjectType::Block, intervalTime };
 	blockVector.push_back(block);
 }
 

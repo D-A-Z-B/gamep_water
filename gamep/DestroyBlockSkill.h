@@ -8,5 +8,4 @@ public:
 public:
 	void UseSkill() override;
 	void UseSkill(Pos currentPos) override;
-	bool CanUseSkill() override;
 };

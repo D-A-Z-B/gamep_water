@@ -3,17 +3,21 @@
 #include "BlockManager.h"
 #include "WaterManager.h"
 #include "MapManager.h"
+#include "FileManager.h"
 #include "SkillManager.h"
 #include "Player.h"
 #include "Camera.h"
 #include "DeadScene.h"
 #include "ClearScene.h"
+#include "mci.h"
 Core* Core::m_pInst = nullptr;
 
 bool Core::Init()
 {
 	system("cls");
+	PlayBgm(TEXT("Sound\\InGame.mp3"), 300);
 	isDead = false;
+	startTime = clock();
 	isClear = false;
 	BlockManager::GetInst()->Init();
 	MapManager::GetInst()->Init();
@@ -25,10 +29,11 @@ bool Core::Init()
 
 void Core::Run()
 {
-	COORD coord = GetConsoleResolution();
+    COORD Resolution = GetConsoleResolution();
 	player = new Player();
 	while (true)
 	{
+		currentTime = clock() - startTime;
 		Update();
 		Gotoxy(0, 0);
 		if (isDead)
@@ -42,9 +47,11 @@ void Core::Run()
 
 void Core::Dead()
 {
-	Sleep(1000);
+	MapManager::GetInst()->SetMap(player->pos, ObjectType::None);
+	Sleep(2000);
 	system("cls");
 	isDead = true;
+	delete cam;
 }
 
 void Core::Clear()
@@ -52,11 +59,12 @@ void Core::Clear()
 	Sleep(1000);
 	system("cls");
 	isClear = true;
+	delete cam;
 }
 
 void Core::Update()
 {
-	BlockManager::GetInst()->Update();
+	BlockManager::GetInst()->Update(cam);
 	WaterManager::GetInst()->Update();
 	player->Update();
 	cam->Update(player);

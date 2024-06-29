@@ -8,6 +8,16 @@ void Skill::Init(int skillCooldown)
 	lastSkillUseTime = clock();
 }
 
+bool Skill::CanUseSkill()
+{
+	bool cooldownCheck = (clock() - lastSkillUseTime) / CLOCKS_PER_SEC > skillCooldown;
+	if (cooldownCheck)
+	{
+		return true;
+	}
+	return false;
+}
+
 float Skill::ReturnCoolTime()
 {
 	int time = (int)(skillCooldown - (clock() - lastSkillUseTime) / CLOCKS_PER_SEC);

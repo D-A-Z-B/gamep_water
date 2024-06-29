@@ -8,12 +8,12 @@ class FileManager
 private:
 	FileManager() = default;
 public:
-	int GetHighScore();
-	void SetHighScore(int score);
+	float GetHighScore();
+	void SetHighScore(float clearTime);
 private:
 	std::ofstream writeFile;
 	std::ifstream readFile;
-	int score;
+	float clearTime;
 public:
 	static FileManager* GetInst()
 	{

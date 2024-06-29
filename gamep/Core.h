@@ -12,6 +12,7 @@ public:
 	void Run();
 	void Dead();
 	void Clear();
+	float ReturnCurrentTime() { return currentTime / CLOCKS_PER_SEC; }
 private:
 	void Update();
 	void Render();
@@ -36,7 +37,9 @@ public:
 	Camera *cam;
 	bool isDead;
 	bool isClear;
-	Camera *camera;
+private:
+	clock_t startTime;
+	float currentTime;
 private:
 	static Core* m_pInst;
 };
