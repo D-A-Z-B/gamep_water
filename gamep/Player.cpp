@@ -17,9 +17,14 @@ void Player::Init()
 
 void Player::Update()
 {
+    Pos checkDeadPos = { -1, -1 };
+    if (MapManager::GetInst()->GetPos(ObjectType::Player) == checkDeadPos) {
+        PlayEffect(TEXT("Sound\\BlockDie.mp3"));
+        Core::GetInst()->Dead();
+        return;
+    }
     Move();
     SKill();
-    WaterCheck();
 }
 
 void Player::Render()
@@ -111,15 +116,15 @@ void Player::SKill()
     }
 }
 
-void Player::WaterCheck()
-{
-    if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Water))
-    {
-        MapManager::GetInst()->SetMap(pos, ObjectType::None);
-        Sleep(1000);
-        Core::GetInst()->Dead();
-    }
-}
+//void Player::WaterCheck()
+//{
+//    if (MapManager::GetInst()->CheckObjectType({ pos.x, pos.y + 1 }, ObjectType::Water))
+//    {
+//        MapManager::GetInst()->SetMap(pos, ObjectType::None);
+//        Sleep(1000);
+//        Core::GetInst()->Dead();
+//    }
+//}
 
 KEY_INPUT Player::KeyInput()
 {

@@ -23,7 +23,7 @@ public:
 private:
 	void Move();
 	void SKill();
-	void WaterCheck();
+	//void WaterCheck();
 	KEY_INPUT KeyInput();
 	void GoalCheck(Pos newPos);
 };

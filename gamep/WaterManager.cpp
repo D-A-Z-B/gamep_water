@@ -22,14 +22,6 @@ void WaterManager::Update()
 	{
 		PlayEffect(TEXT("Sound\\Water.mp3"));
 		currentY--;
-		for (int i = 0; i < MAP_WIDTH - 1; i++)
-		{
-			if (MapManager::GetInst()->CheckObjectType({ i, currentY }, ObjectType::Player))
-			{
-				Core::GetInst()->Dead();
-				return;
-			}
-		}
 		oldTime = clock();
 	};
 }

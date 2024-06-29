@@ -1,6 +1,8 @@
 ﻿#include <fstream>
 #include "MapManager.h"
 #include "Object.h"
+#include "mci.h"
+#include "Core.h"
 MapManager* MapManager::m_pInst = nullptr;
 
 bool MapManager::Init()

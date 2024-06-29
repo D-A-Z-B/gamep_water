@@ -48,7 +48,7 @@ void Core::Run()
 void Core::Dead()
 {
 	MapManager::GetInst()->SetMap(player->pos, ObjectType::None);
-	Sleep(2000);
+	Sleep(1000);
 	system("cls");
 	isDead = true;
 	delete cam;

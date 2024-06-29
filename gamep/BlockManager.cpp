@@ -36,12 +36,6 @@ void BlockManager::Update(Camera* cam)
 	{
 		block.Update();
 	}
-	Pos checkDeadPos = { -1, -1 };
-	if (MapManager::GetInst()->GetPos(ObjectType::Player) == checkDeadPos) {
-		PlayEffect(TEXT("Sound\\BlockDie.mp3"));
-		Core::GetInst()->Dead();
-		return;
-	}
 }
 
 void BlockManager::Render()
