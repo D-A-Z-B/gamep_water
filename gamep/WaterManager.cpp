@@ -21,7 +21,6 @@ void WaterManager::Update()
 	if ((float)(currentTime - oldTime) / CLOCKS_PER_SEC >= intervalTime)
 	{
 		PlayEffect(TEXT("Sound\\Water.mp3"));
-		count++;
 		currentY--;
 		for (int i = 0; i < MAP_WIDTH - 1; i++)
 		{

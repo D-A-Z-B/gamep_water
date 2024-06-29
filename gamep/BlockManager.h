@@ -21,8 +21,8 @@ private:
 public:
 	std::vector<Block> blockVector;
 private:
-	float intervalTime;
 	float randomBlockInterval;
+	float intervalTime;
 	clock_t currentTime, oldTime;
 	int randomIndex;
 	int randomX;
