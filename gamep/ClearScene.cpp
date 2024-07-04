@@ -50,9 +50,16 @@ void ClaerHighScoreRender()
 	cout << "클리어 시간: " << min << "분 " << sec << "초";
 
 	Gotoxy(x, y+ 1);
-	min = (int)beforeHighScore / 60;
-	sec = (int)beforeHighScore % 60;
-	cout << "최단 기록: " << min << "분 " << sec << "초";
+	if (beforeHighScore > 0)
+	{
+		int min = (int)time / 60;
+		int sec = (int)time % 60;
+		cout << "최단 기록: " << min << "분 " << sec << "초";
+	}
+	else
+	{
+		cout << "최단 기록: 기록 없음";
+	}
 }
 
 ClearSceneMenu ClearScene()

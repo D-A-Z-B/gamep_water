@@ -11,7 +11,7 @@ float FileManager::GetHighScore()
 
 void FileManager::SetHighScore(float clearTime)
 {
-	if (clearTime > GetHighScore())
+	if (clearTime > GetHighScore() && GetHighScore() != 0)
 	{
 		return;
 	}

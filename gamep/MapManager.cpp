@@ -15,7 +15,7 @@ bool MapManager::Init()
 		else
 			arrMap.push_back("00000000000000");
 	}
-	arrMap.push_back("00000100000000");
+	arrMap.push_back("00000140000000");
 	arrMap.push_back("22222222222222");
 	arrMap.push_back("22222222222222");
 	arrMap.push_back("33333333333333");

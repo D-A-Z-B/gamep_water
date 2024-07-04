@@ -130,9 +130,16 @@ void HighScoreRender()
 	int y = Resolution.Y / 3;
 	Gotoxy(x, y);
 	float time = FileManager::GetInst()->GetHighScore();
-	int min = (int)time / 60;
-	int sec = (int)time % 60;
-	cout << "최단 기록: " << min << "분 " << sec << "초";
+	if (time > 0)
+	{
+		int min = (int)time / 60;
+		int sec = (int)time % 60;
+		cout << "최단 기록: " << min << "분 " << sec << "초";
+	}
+	else
+	{
+		cout << "최단 기록: 기록 없음";
+	}
 }
 
 MENU MenuRender()
